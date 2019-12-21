@@ -1,3 +1,5 @@
+import Tank from './tank';
+
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
@@ -5,21 +7,29 @@ ctx.canvas.width = window.innerWidth;
 ctx.canvas.height = window.innerHeight;
 
 const state = {
-  box: {
+  mouse: {
     x: 0,
     y: 0,
+  },
+  tank: {
+    x: 200,
+    y: 200,
+    rotation: 0,
   }
 };
 
-import Box from './box';
+window.addEventListener('mousemove', (event) => {
+  state.mouse.x = event.clientX;
+  state.mouse.y = event.clientY;
+});
 
 function loop(timestamp) {
   const progress = timestamp - lastRender;
 
-  Box.update({ progress, state })
+  Tank.update({ progress, state })
 
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-  Box.draw({ ctx, state });
+  Tank.draw({ ctx, state });
 
   lastRender = timestamp;
   window.requestAnimationFrame(loop);
