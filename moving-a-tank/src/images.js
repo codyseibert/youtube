@@ -12,7 +12,6 @@ export default ({ state, ready }) => {
       state.images[imageFileBaseName] = image;
       loaded++;
       if (loaded === images.length) {
-        console.log('ready');
         ready();
       }
     }
