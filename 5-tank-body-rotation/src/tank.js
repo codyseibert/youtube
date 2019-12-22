@@ -61,7 +61,6 @@ const determineBodyRotation = ({ state }) => {
     } else {
       tank.bodyRotation -= tank.bodyRotationSpeed;
     }
-
   } else if (state.input.right) {
     if (state.input.back) {
       tank.bodyRotation -= tank.bodyRotationSpeed;
