@@ -47,8 +47,8 @@ const moveTankTowardsBodyRotation = ({ state }) => {
 const determineGunRotation = ({ state }) => {
   const tank = state.tank;
   tank.gunRotation = Math.atan2(
+    state.mouse.y - tank.y,
     state.mouse.x - tank.x,
-    -(state.mouse.y - tank.y),
   );
 }
 
