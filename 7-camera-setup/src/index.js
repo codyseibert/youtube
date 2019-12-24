@@ -1,10 +1,7 @@
-import state from './state';
-import startGameLoop from './loop';
-import loadImages from './images';
-import setupInputListeners from './input';
-
-window.state = state;
-window.tank = state.tank;
+import state from "./state";
+import startGameLoop from "./loop";
+import loadImages from "./images";
+import setupInputListeners from "./input";
 
 loadImages({
   state,
