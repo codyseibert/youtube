@@ -5,8 +5,12 @@ const io = require("socket.io")(server, {
 const users = {};
 io.on("connection", client => {
   client.on("username", username => {
-    users[client.id] = username;
-    io.emit("connected", username);
+    const user = {
+      name: username,
+      id: client.id
+    };
+    users[client.id] = user;
+    io.emit("connected", user);
     io.emit("users", Object.values(users));
   });
 
@@ -21,7 +25,7 @@ io.on("connection", client => {
   client.on("disconnect", () => {
     const username = users[client.id];
     delete users[client.id];
-    io.emit("disconnected", username);
+    io.emit("disconnected", client.id);
   });
 });
 server.listen(3000);

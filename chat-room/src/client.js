@@ -31,15 +31,13 @@ const App = ({}) => {
       setMessages(messages => [...messages, message]);
     });
 
-    socket.on("connected", username => {
-      setUsers(users => [...users, username]);
+    socket.on("connected", user => {
+      setUsers(users => [...users, user]);
     });
 
-    socket.on("disconnected", username => {
+    socket.on("disconnected", id => {
       setUsers(users => {
-        const newUsers = [...users];
-        newUsers.splice(newUsers.indexOf(username), 1);
-        return newUsers;
+        return users.filter(user => user.id !== id);
       });
     });
   }, []);
@@ -62,11 +60,11 @@ const App = ({}) => {
           <h6>Messages</h6>
           <div id="messages">
             {messages.map(({ user, date, text }, index) => (
-              <div key={index} className="row">
+              <div key={index} className="row mb-2">
                 <div className="col-md-3">
                   {moment(date).format("h:mm:ss a")}
                 </div>
-                <div className="col-md-2">{user}</div>
+                <div className="col-md-2">{user.name}</div>
                 <div className="col-md-2">{text}</div>
               </div>
             ))}
@@ -91,8 +89,8 @@ const App = ({}) => {
         <div className="col-md-4">
           <h6>Users</h6>
           <ul id="users">
-            {users.map(user => (
-              <li key={user}>{user}</li>
+            {users.map(({ name, id }) => (
+              <li key={id}>{name}</li>
             ))}
           </ul>
         </div>
