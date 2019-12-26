@@ -40,7 +40,7 @@ function updatePlayer({ player, block }) {
   }
 
   if (isColliding(player, block)) {
-    player.brain.score--;
+    player.brain.score = block.score;
     player.isDead = true;
   }
 
@@ -59,7 +59,9 @@ function updateBlock({ block }) {
 }
 
 function drawPlayer({ player }) {
+  ctx.globalAlpha = 0.2;
   ctx.fillRect(player.x, player.y, player.width, player.height);
+  ctx.globalAlpha = 1;
 }
 
 function drawBlock({ block }) {
@@ -113,7 +115,8 @@ export default ({ neat }) => {
 
     for (let i = 0; i < NUMBER_OF_BLOCKS; i++) {
       blocks.push({
-        x: ctx.canvas.width + 100 + parseInt(Math.random() * 200) + i * 300,
+        score: i,
+        x: ctx.canvas.width + 100 + parseInt(Math.random() * 100) + i * 250,
         y: ctx.canvas.height / 2 - 50,
         height: 70,
         width: 20
@@ -124,7 +127,7 @@ export default ({ neat }) => {
       genome.score = 0;
       players.push({
         brain: genome,
-        x: ctx.canvas.width / 2,
+        x: ctx.canvas.width / 2 + parseInt(Math.random() * 50),
         y: ctx.canvas.height / 2,
         vy: 0,
         canJump: true,

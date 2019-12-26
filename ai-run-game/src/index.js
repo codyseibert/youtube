@@ -25,7 +25,7 @@ const neat = new neataptic.Neat(1, 1, null, {
   ],
   popsize: POP_SIZE,
   mutationRate: 0.3,
-  elitism: Math.round(0.3 * POP_SIZE)
+  elitism: Math.round(0.15 * POP_SIZE)
 });
 
 neat.mutate();
