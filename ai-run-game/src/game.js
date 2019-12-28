@@ -58,14 +58,14 @@ function updateBlock({ block }) {
   block.x -= 5;
 }
 
-function drawPlayer({ player }) {
+function drawPlayer({ player, state }) {
   ctx.globalAlpha = 0.2;
-  ctx.fillRect(player.x, player.y, player.width, player.height);
+  ctx.drawImage(state.images.player, player.x, player.y);
   ctx.globalAlpha = 1;
 }
 
-function drawBlock({ block }) {
-  ctx.fillRect(block.x, block.y, block.width, block.height);
+function drawBlock({ block, state }) {
+  ctx.drawImage(state.images.block, block.x, block.y);
 }
 
 const update = ({ resolve, reject }) => {
@@ -88,15 +88,17 @@ const update = ({ resolve, reject }) => {
   }
 };
 
-const draw = ({ neat }) => {
+const draw = ({ neat, state }) => {
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
+  ctx.fillRect(0, ctx.canvas.height / 2 + 20, ctx.canvas.width, 2);
+
   for (const player of players) {
-    drawPlayer({ player });
+    drawPlayer({ player, state });
   }
 
   for (const block of blocks) {
-    drawBlock({ block });
+    drawBlock({ block, state });
   }
 
   ctx.font = '30px Arial';
@@ -108,7 +110,7 @@ This game function is responsible for creating, drawing, and updating the game u
 player makes it to the end.  When it found a winning player, it will invoke the onEnd callback
 and pass the winning player object.  This player object should be used for getting the associated "brain".
 */
-export default ({ neat }) => {
+export default ({ neat, state }) => {
   return new Promise((resolve, reject) => {
     players = [];
     blocks = [];
@@ -139,7 +141,7 @@ export default ({ neat }) => {
 
     interval = setInterval(() => {
       update({ resolve, reject });
-      draw({ neat });
+      draw({ neat, state });
     }, 10);
   });
 };

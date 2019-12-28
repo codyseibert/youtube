@@ -1,8 +1,13 @@
 import 'regenerator-runtime/runtime';
 
+import loadImages from './images';
 import neataptic from 'neataptic';
 
 import game from './game';
+
+const state = {
+  images: {}
+};
 
 const Methods = neataptic.methods;
 
@@ -30,34 +35,42 @@ const neat = new neataptic.Neat(1, 1, null, {
 
 neat.mutate();
 
-(async () => {
-  let bestPlayer = null;
-  while (true) {
-    try {
-      bestPlayer = await game({
-        neat
-      });
-      break;
-    } catch (err) {
-      console.log('no one won, trying again');
+const startGameLoop = () => {
+  (async () => {
+    let bestPlayer = null;
+    while (true) {
+      try {
+        bestPlayer = await game({
+          neat,
+          state
+        });
+        break;
+      } catch (err) {
+        console.log('no one won, trying again');
 
-      neat.sort();
+        neat.sort();
 
-      const newPopulation = [];
+        const newPopulation = [];
 
-      for (let i = 0; i < neat.elitism; i++) {
-        newPopulation.push(neat.population[i]);
+        for (let i = 0; i < neat.elitism; i++) {
+          newPopulation.push(neat.population[i]);
+        }
+
+        for (let i = 0; i < neat.popsize - neat.elitism; i++) {
+          newPopulation.push(neat.getOffspring());
+        }
+
+        neat.population = newPopulation;
+        neat.mutate();
+
+        neat.generation++;
       }
-
-      for (let i = 0; i < neat.popsize - neat.elitism; i++) {
-        newPopulation.push(neat.getOffspring());
-      }
-
-      neat.population = newPopulation;
-      neat.mutate();
-
-      neat.generation++;
     }
-  }
-  console.log('bestPlayer', bestPlayer);
-})();
+    console.log('bestPlayer', bestPlayer);
+  })();
+};
+
+loadImages({
+  state,
+  ready: () => startGameLoop({ state })
+});
