@@ -1,0 +1,20 @@
+{
+  "name": "ai-pong",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "node-key-sender": "^1.0.11"
+  },
+  "dependencies": {
+    "jimp": "^0.9.3",
+    "opencv4nodejs": "^5.5.0",
+    "robotjs": "^0.6.0"
+  }
+}
