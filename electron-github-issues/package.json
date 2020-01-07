@@ -1,0 +1,29 @@
+{
+  "name": "issues",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "DEBUG=1 ELECTRON_ENABLE_LOGGING=1 electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "keywords": [],
+  "author": "Cody Seibert",
+  "license": "MIT",
+  "postinstall": "electron-builder install-app-deps",
+  "dependencies": {
+    "request": "^2.88.0",
+    "shell": "^0.5.0"
+  },
+  "devDependencies": {
+    "electron": "^7.1.7",
+    "electron-builder": "^21.2.0"
+  },
+  "build": {
+    "appId": "some app",
+    "mac": {
+      "category": "software tool"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+body {
+  background-color: #222233;
+  color: #aaccff;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  height: 150px;
+  overflow: hidden;
+  -webkit-app-region: drag;
+  margin: 0;
+  padding: 0;
+  height: 200;
+  overflow-y: auto;
+}
+
+.issue {
+  border-bottom: 1px solid #333;
+  background-color: rgb(165, 124, 0);
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.issue:hover {
+  background-color: rgb(102, 104, 0);
+}
