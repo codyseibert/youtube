@@ -1,0 +1,28 @@
+{
+  "name": "electron-in-5-minutes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "DEBUG=1 ELECTRON_ENABLE_LOGGING=1 electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "keywords": [],
+  "author": "Cody Seibert",
+  "license": "MIT",
+  "postinstall": "electron-builder install-app-deps",
+  "dependencies": {
+    "desktop-screenshot": "^0.1.1"
+  },
+  "devDependencies": {
+    "electron": "^7.1.7",
+    "electron-builder": "^21.2.0"
+  },
+  "build": {
+    "appId": "some app",
+    "mac": {
+      "category": "software tool"
+    }
+  }
+}
