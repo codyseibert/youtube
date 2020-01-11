@@ -1,0 +1,24 @@
+body {
+  background-color: black;
+}
+
+.rocket {
+  background-image: url('./star.png');
+  background-size: contain;
+  width: 12px;
+  height: 12px;
+  position: fixed;
+}
+
+.particle {
+  background-color: red;
+  width: 2px;
+  height: 2px;
+  position: fixed;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  font-size: 50px;
+}
