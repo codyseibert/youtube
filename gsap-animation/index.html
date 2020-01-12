@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+    />
+    <style>
+      body {
+        background-color: black;
+      }
+
+      .circle {
+        border-radius: 50%;
+        background-color: #059faa;
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        text-align: center;
+        top: -100px;
+      }
+
+      .circle i {
+        color: white;
+        font-size: 42px;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
+
+      #arrow {
+        color: white;
+        position: absolute;
+        font-size: 30px;
+        text-align: center;
+        width: 200px;
+      }
+
+      #arrow i {
+        color: white;
+        font-size: 120px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="user" class="circle">
+      <i class="fas fa-user"><br />USER</i>
+    </div>
+
+    <div id="arrow">
+      <i class="fas fa-arrows-alt-h"></i>
+      <br />
+      HTTP(S)
+    </div>
+
+    <div id="api" class="circle">
+      <i class="fas fa-server"><br />API</i>
+    </div>
+    <script src="./node_modules/gsap/dist/gsap.js"></script>
+    <script>
+      const tl = gsap.timeline();
+
+      tl.fromTo(
+        '#user',
+        {
+          x: 426 - 100,
+          y: -100,
+          width: 50,
+          height: 50,
+          opacity: 0
+        },
+        {
+          duration: 1,
+          width: 200,
+          height: 200,
+          opacity: 1,
+          y: window.innerHeight / 2,
+          ease: 'power2.out'
+        }
+      )
+        .addPause()
+        .fromTo(
+          '#arrow',
+          {
+            x: 1280 / 2 - 100,
+            y: -200,
+            width: 50,
+            height: 50,
+            opacity: 0
+          },
+          {
+            duration: 1,
+            width: 200,
+            height: 200,
+            opacity: 1,
+            y: window.innerHeight / 2 - 60,
+            ease: 'power2.out'
+          }
+        )
+        .addPause()
+
+        .fromTo(
+          '#api',
+          {
+            x: 426 * 2 - 100,
+            y: -100,
+            width: 50,
+            height: 50,
+            opacity: 0
+          },
+          {
+            duration: 1,
+            width: 200,
+            height: 200,
+            opacity: 1,
+            y: window.innerHeight / 2,
+            ease: 'power2.out'
+          }
+        );
+
+      document.addEventListener('keydown', () => {
+        tl.resume();
+      });
+    </script>
+  </body>
+</html>
