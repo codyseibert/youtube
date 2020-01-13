@@ -7,13 +7,14 @@
       content="width=device-width, initial-scale=1.0"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title>REST API</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
     />
     <style>
       body {
+        cursor: none;
         background-color: black;
       }
 
@@ -24,7 +25,18 @@
         height: 200px;
         position: absolute;
         text-align: center;
-        top: -100px;
+      }
+
+      #api {
+        background-color: #ff7f50;
+        position: absolute;
+      }
+
+      h1 {
+        color: white;
+        font-size: 60px;
+        text-align: center;
+        padding-top: 200px;
       }
 
       .circle i {
@@ -36,6 +48,10 @@
         left: 50%;
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
+      }
+
+      #endpoints {
+        display: none;
       }
 
       #arrow {
@@ -51,87 +67,309 @@
         font-size: 120px;
         text-align: center;
       }
+
+      #type {
+        position: absolute;
+        font-size: 40px;
+        color: white;
+        opacity: 0;
+      }
+
+      #response {
+        position: absolute;
+        font-size: 40px;
+        color: white;
+        opacity: 0;
+      }
+
+
+      #cube {
+        opacity: 0;
+        position: absolute;
+        font-size: 60px;
+        color: #ecf284;
+      }
+
+      #wrapper {
+        position: absolute;
+      }
+
+      .link {
+        font-size: 24px;
+      }
+
+      #endpoints {
+        font-size: 24px;
+        color: black;
+        margin-top: 20px;
+      }
+
+      #code {
+        background-color: white;
+        width: 400px;
+        height: 200px;
+        padding-top: 100px;
+        position: absolute;
+        opacity: 0;
+      }
+
+      #code pre {
+        position: absolute;
+        left: -60px;
+      }
     </style>
   </head>
   <body>
-    <div id="user" class="circle">
-      <i class="fas fa-user"><br />USER</i>
+    <!-- <h1>What is a REST API?</h1> -->
+
+    <div id="wrapper">
+      <div id="user" class="circle">
+        <i class="fas fa-user"><br />CLIENT</i>
+      </div>
+
+      <div id="arrow">
+        <i class="fas fa-arrows-alt-h"></i>
+        <br />
+        HTTP(S)
+      </div>
+
+      <div id="type">
+        REQUEST
+      </div>
+      <div id="response">
+        RESPONSE
+      </div>
+
+      <div id="api" class="circle">
+        <i class="fas fa-server"
+          ><br />API<br />
+          <span class="link">example.com</span>
+          <span id="endpoints">
+            GET@/users<br />
+            <span id="post">POST@/users</span>
+              <br />....
+          </i
+        >
+      </div>
+
+      <div id="cube">
+        <i class="fas fa-cube"></i>
+      </div>
+
+      <div id="code">
+        <pre>
+          app.post('/users', (req, res) => {
+            // load the client's payload
+            const body = req.body;
+            // create a user
+            // save the user to the database
+            // send data back to client
+            res.send(user)
+          })
+        </pre>
+      </div>
     </div>
 
-    <div id="arrow">
-      <i class="fas fa-arrows-alt-h"></i>
-      <br />
-      HTTP(S)
-    </div>
-
-    <div id="api" class="circle">
-      <i class="fas fa-server"><br />API</i>
-    </div>
     <script src="./node_modules/gsap/dist/gsap.js"></script>
     <script>
       const tl = gsap.timeline();
+      const DURATION = 3;
 
-      tl.fromTo(
-        '#user',
-        {
-          x: 426 - 100,
-          y: -100,
-          width: 50,
-          height: 50,
-          opacity: 0
-        },
-        {
-          duration: 1,
-          width: 200,
-          height: 200,
-          opacity: 1,
-          y: window.innerHeight / 2,
-          ease: 'power2.out'
-        }
-      )
-        .addPause()
-        .fromTo(
+      pause = () => {
+        tl.addPause();
+      };
+
+      dropInUser = () => {
+        tl.fromTo(
+          '#user',
+          {
+            x: 426 - 100,
+            y: -100,
+            opacity: 0
+          },
+          {
+            duration: DURATION,
+            width: 200,
+            height: 200,
+            opacity: 1,
+            y: window.innerHeight / 2 - 100,
+            ease: 'power2.out'
+          }
+        );
+      };
+
+      const dropInApi = () => {
+        tl.fromTo(
+          '#api',
+          {
+            x: 426 * 2 - 100,
+            y: -100,
+            opacity: 0
+          },
+          {
+            duration: DURATION,
+            width: 200,
+            height: 200,
+            opacity: 1,
+            y: window.innerHeight / 2 - 100,
+            ease: 'power2.out'
+          }
+        );
+      };
+
+      const dropInArrow = () => {
+        tl.fromTo(
           '#arrow',
           {
             x: 1280 / 2 - 100,
             y: -200,
-            width: 50,
-            height: 50,
             opacity: 0
           },
           {
-            duration: 1,
+            duration: DURATION,
             width: 200,
             height: 200,
             opacity: 1,
             y: window.innerHeight / 2 - 60,
             ease: 'power2.out'
           }
-        )
-        .addPause()
+        );
+      };
 
-        .fromTo(
-          '#api',
+      const sendBoxToApi = () => {
+        tl.fromTo(
+          '#cube',
           {
-            x: 426 * 2 - 100,
-            y: -100,
-            width: 50,
-            height: 50,
+            x: 1280 / 2 - 300,
+            y: window.innerHeight / 2 - 30,
+            width: 200,
+            height: 200,
             opacity: 0
           },
           {
-            duration: 1,
+            x: 426 * 2 - 100,
+            duration: DURATION * 2,
             width: 200,
             height: 200,
             opacity: 1,
-            y: window.innerHeight / 2,
             ease: 'power2.out'
           }
-        );
+        )
+        .fromTo('#type', {
+          x: 550,
+          y: 100,
+          opacity: 0
+        }, {
+          duration: DURATION * 2,
+          x: 550,
+          y: 100,
+          opacity: 1,
+          ease: 'power2.out'
+        }, `-=${DURATION * 2}`);
+      };
+
+      const expandApi = () => {
+        tl.to('#api', {
+          width: 600,
+          height: 600,
+          top: '-200',
+          duration: DURATION
+        })
+          .to('#cube', {
+            x: 426 * 2 - 50
+          }, `-=${DURATION}`)
+          .to(
+            '#endpoints',
+            {
+              display: 'block'
+            },
+            `-=${DURATION}`
+          )
+          .to(
+            '#wrapper',
+            {
+              x: '-400',
+              duration: DURATION
+            },
+            `-=${DURATION}`
+          );
+      };
+
+      const highlightEndpoint = () => {
+        tl.to('#post', {
+          color: 'white',
+        });
+      };
+
+      const showCode = () => {
+        tl.to('#code', {
+          opacity: 1,
+          x: 1200,
+          y: 150,
+        })
+      }
+
+      const setDataRed = () => {
+        tl.to('#cube', {
+          color: 'red'
+        });
+      }
+
+      const sendDataBack = () => {
+        tl.to('#cube', {
+          x: 1280 / 2 - 300,
+          duration: DURATION * 2,
+        })  
+          .to('#type',
+            {
+              opacity: 0,
+            },
+            `-=${DURATION * 2}`
+          )
+          .fromTo('#response', {
+            x: 550,
+            y: 100,
+            opacity: 0
+          }, {
+            duration: DURATION * 2,
+            x: 550,
+            y: 100,
+            opacity: 1,
+            ease: 'power2.out'
+          }, `-=${DURATION * 2}`)
+
+          .to(
+            '#wrapper',
+            {
+              x: 0,
+              duration: DURATION * 2
+            },
+            `-=${DURATION * 2}`
+          );
+      }
 
       document.addEventListener('keydown', () => {
         tl.resume();
       });
+
+      dropInApi();
+      pause();
+      dropInUser();
+      pause();
+      dropInArrow();
+      pause();
+      sendBoxToApi();
+      pause();
+      expandApi();
+      pause();
+      highlightEndpoint();
+      pause();
+      showCode();
+      pause();
+      setDataRed();
+      pause()
+      sendDataBack();
+
     </script>
   </body>
 </html>
