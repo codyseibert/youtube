@@ -1,0 +1,63 @@
+<div>
+  <h1>Vote on your favorite Thumbnails</h1>
+  <div id="scenarios">
+    ${scenarios.map(scenario => `
+    <div class="row mb-4">
+      <div class="col-md-3"></div>
+      <div class="thumbnail-a col-md-3">
+        <div class="card">
+          <img
+            src="${scenario.thumbnailA}"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title">Thumbnail A</h5>
+            <form
+              action="/vote/${scenario.id}"
+              method="post"
+            >
+              <input name="thumbnail" value="a" type="hidden"></input>
+              ${scenario.votes.indexOf(session.username) === -1 ? 
+                `<button
+                  type="submit"
+                  class="btn btn-primary"
+                >
+                  Vote A
+                </button>` : ''
+              }
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="thumbnail-b col-md-3">
+        <div class="card">
+          <img
+            src="${scenario.thumbnailB}"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title">Thumbnail B</h5>
+            <form
+              action="/vote/${scenario.id}"
+              method="post"
+            >
+              <input name="thumbnail" value="b" type="hidden"></input>
+              ${scenario.votes.indexOf(session.username) === -1 ? 
+                `<button
+                  type="submit"
+                  class="btn btn-primary"
+                >
+                  Vote B
+                </button>` : ''
+              }
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+    `).join('')}
+  </div>
+</div>

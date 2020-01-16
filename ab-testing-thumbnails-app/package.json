@@ -1,0 +1,24 @@
+{
+  "name": "ab-testing-thumbnails-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -e js src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-es6-template-engine": "^2.2.1",
+    "express-session": "^1.17.0",
+    "multer": "^1.4.2",
+    "uuid": "^3.3.3",
+    "uuidv4": "^6.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}

@@ -1,0 +1,4 @@
+- display logout button when logged in
+- display name when logged in
+- display login button when logged out
+-
