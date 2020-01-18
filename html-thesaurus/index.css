@@ -1,0 +1,20 @@
+body {
+  padding-left: 100px;
+  background-color: #eee;
+}
+
+input {
+  padding: 10px;
+  font-size: 24px;
+}
+
+label {
+  font-weight: bold;
+}
+
+button {
+  font-size: 34px;
+  background-color: lightskyblue;
+  color: black;
+  border: 1px solid black;
+}

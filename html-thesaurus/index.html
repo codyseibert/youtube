@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Thesaurus</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <h1>Online Thesaurus</h1>
+    <form id="word-form" onsubmit="onSubmit(event)">
+      <label for="word"
+        >Input a Word
+        <br />
+        <input id="word" type="text"
+      /></label>
+      <button>Enter</button>
+    </form>
+    <h3>Synonyms for your word</h3>
+    <ul id="list">
+      <li>
+        hard
+      </li>
+      <li>
+        ambitious
+      </li>
+      <li>
+        challenging
+      </li>
+    </ul>
+
+    <script>
+      async function onSubmit(e) {
+        e.preventDefault();
+        const word = document.getElementById('word').value;
+        const results = await fetch(
+          `http://localhost:3000?word=${word}`
+        );
+        const body = await results.json();
+        let words = [];
+        for (let entry of body.response) {
+          words = [
+            ...words,
+            ...entry.list.synonyms.split('|')
+          ];
+        }
+
+        const ul = document.getElementById('list');
+        ul.innerHTML = '';
+        for (const aWord of words) {
+          const li = document.createElement('li');
+          li.innerText = aWord;
+          ul.appendChild(li);
+        }
+      }
+    </script>
+  </body>
+</html>
