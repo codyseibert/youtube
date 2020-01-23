@@ -1,3 +1,9 @@
+# TODO
+
+- frontend
+  - a user shall be able to post a new idea
+- backend 
+
 # client
 
 ## Project setup
