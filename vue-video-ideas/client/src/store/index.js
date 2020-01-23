@@ -3,7 +3,8 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-import axios from 'axios';
+import * as ideasService from '../services/ideas';
+
 import router from '../router';
 
 export default new Vuex.Store({
@@ -27,24 +28,19 @@ export default new Vuex.Store({
   },
   actions: {
     async createIdea(context) {
-      // TODO: wrap in a service helper
-      await axios.post('http://localhost:5000/ideas', context.state.form);
+      await ideasService.createIdea(context.state.form);
       router.push('/');
     },
     async getIdeas(context) {
-      const { data: ideas } = await axios.get('http://localhost:5000/ideas');
+      const ideas = await ideasService.getIdeas();
       context.commit('setIdeas', ideas);
     },
     async upVoteIdea(context, idea) {
-      const { data: updatedIdea } = await axios.post(
-        `http://localhost:5000/ideas/${idea._id}/votes`
-      );
+      const updatedIdea = await ideasService.upVoteIdea(idea._id);
       context.commit('setIdea', updatedIdea);
     },
     async downVoteIdea(context, idea) {
-      const { data: updatedIdea } = await axios.delete(
-        `http://localhost:5000/ideas/${idea._id}/votes`
-      );
+      const updatedIdea = await ideasService.downVoteIdea(idea._id);
       context.commit('setIdea', updatedIdea);
     }
   },

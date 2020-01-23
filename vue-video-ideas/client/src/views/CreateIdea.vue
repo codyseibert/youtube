@@ -2,9 +2,13 @@
   <div class="submit-idea">
     <h1>Submit an Idea</h1>
     <form @submit="_submitIdea">
-      <textarea @change="_setForm"></textarea>
-      <br />
-      <button type="submit">Submit</button>
+      <v-textarea
+        outlined
+        @change="_setForm"
+        name="input-7-4"
+        label="Idea Description"
+      ></v-textarea>
+      <v-btn type="submit" color="success" class="white--text">Submit</v-btn>
     </form>
   </div>
 </template>
@@ -16,10 +20,10 @@ export default {
   methods: {
     ...mapMutations(['setForm']),
     ...mapActions(['createIdea']),
-    _setForm(event) {
+    _setForm(value) {
       this.setForm({
         key: 'idea',
-        value: event.target.value
+        value
       });
     },
     _submitIdea(event) {

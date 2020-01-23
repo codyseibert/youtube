@@ -1,15 +1,24 @@
 <template>
-  <div id="app">
-    <router-view />
-  </div>
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      <div class="d-flex align-center">
+        YouTube Ideas
+      </div>
+
+      <v-spacer></v-spacer>
+    </v-app-bar>
+
+    <v-content>
+      <v-container>
+        <router-view />
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-</style>
+<script>
+export default {
+  name: 'App',
+  components: {}
+};
+</script>

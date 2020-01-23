@@ -1,8 +1,3 @@
-# TODO
-
-- styling using vuetify
-- refactorying the code
-
 # client
 
 ## Project setup
