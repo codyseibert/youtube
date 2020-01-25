@@ -1,0 +1,56 @@
+body {
+  background-color: #eee;
+  font-family: 'Work Sans', sans-serif;
+  color: #000;
+  color: #fff;
+  margin: 0;
+  text-shadow: 2px 2px #333;
+}
+
+#logo {
+  position: fixed;
+  font-size: 80px;
+  z-index: 1;
+  top: -300px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+#name {
+  position: fixed;
+  font-size: 50px;
+  z-index: 1;
+  bottom: -500px;
+  white-space: nowrap;
+}
+
+#title {
+  position: fixed;
+  font-size: 80px;
+  z-index: 1;
+  top: -300px;
+  left: 400px;
+  text-align: center;
+  width: 500px;
+  color: #000;
+  text-shadow: 2px 2px #fff;
+}
+
+#triangle {
+  position: fixed;
+  width: 0;
+  height: 0;
+  border-top: 0px solid #f5f686;
+  border-right: 0px solid transparent;
+}
+
+#circle {
+  position: fixed;
+  width: 0;
+  height: 0;
+  top: -250px;
+  left: -250px;
+  background-color: #86d1f6;
+  border-radius: 50%;
+  -webkit-box-shadow: 5px 5px 10px #000;
+}
