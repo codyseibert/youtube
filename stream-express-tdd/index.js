@@ -5,17 +5,12 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.json());
 
-const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017';
-const dbName = 'tdd-ideas';
+const { getDatabaseConnection } = require('./db');
 
 const { router } = require('./router');
 
 (async () => {
-  const client = await MongoClient.connect(url);
-  const db = client.db(dbName);
-
+  const db = await getDatabaseConnection();
   router({ app, db });
-
   app.listen(5000);
 })();

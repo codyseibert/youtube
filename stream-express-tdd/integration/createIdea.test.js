@@ -1,6 +1,7 @@
 const axios = require('axios');
 
-const BASE_URL = `http://localhost:5000`;
+const { BASE_URL } = require('./config');
+
 describe('POST@/ideas', () => {
   it('should create and return an idea with a status of 200', async () => {
     const DESCRIPTION =

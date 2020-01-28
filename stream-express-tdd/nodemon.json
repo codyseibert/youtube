@@ -1,0 +1,1 @@
+{ "ignore": ["*.test.js", "./integration/setup.js"] }
