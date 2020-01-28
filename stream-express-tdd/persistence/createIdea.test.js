@@ -21,7 +21,7 @@ describe('createIdea', () => {
       idea: IDEA
     });
     expect(result).toMatchObject({
-      _id: 'abc',
+      id: 'abc',
       ...IDEA
     });
   });
