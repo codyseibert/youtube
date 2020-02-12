@@ -1,5 +1,8 @@
 const { app, BrowserWindow } = require('electron');
 
+const path = require('path');
+const isDev = require('electron-is-dev');
+
 let win;
 
 function createWindow() {
@@ -13,14 +16,20 @@ function createWindow() {
     show: false,
     webPreferences: {
       nodeIntegration: true,
-      preload: __dirname + '/preload.js'
+      preload: path.join(__dirname, 'preload.js')
     }
   });
 
-  // win.loadFile('index.html');
-  win.loadURL('http://localhost:3000');
+  win.loadURL(
+    isDev
+      ? 'http://localhost:3000'
+      : `file://${path.join(
+          __dirname,
+          '../build/index.html'
+        )}`
+  );
 
-  // win.webContents.openDevTools();
+  if (isDev) win.webContents.openDevTools();
 
   win.on('closed', () => {
     win = null;
