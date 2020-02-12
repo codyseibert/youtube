@@ -5,9 +5,11 @@ import {
   combineReducers
 } from 'redux';
 import thunk from 'redux-thunk';
+import { usersReducer } from './reducers/usersReducer';
 import { countReducer } from './reducers/countReducer';
 
 const rootReducer = combineReducers({
+  users: usersReducer,
   count: countReducer
 });
 
