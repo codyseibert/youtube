@@ -1,0 +1,16 @@
+{
+  "name": "phaser-virus-outbreak",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "parcel": "^1.12.4",
+    "phaser": "^3.22.0"
+  }
+}
