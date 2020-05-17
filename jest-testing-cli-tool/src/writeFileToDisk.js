@@ -1,8 +1,8 @@
 const fs = require('fs');
 
-exports.writeFile = async ({ path, file }) =>
+exports.writeFileToDisk = async ({ path, data }) =>
   new Promise((resolve, reject) =>
-    fs.writeFile(path, file, 'utf8', (err) =>
+    fs.writeFile(path, data, 'utf8', (err) =>
       err ? reject(err) : resolve()
     )
   );

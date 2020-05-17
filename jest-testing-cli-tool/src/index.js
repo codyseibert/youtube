@@ -1,4 +1,5 @@
 const { readFileFromDisk } = require('./readFileFromDisk');
+const { writeFileToDisk } = require('./writeFileToDisk');
 const {
   slashDelimitedRegexReplacer,
 } = require('./slashDelimitedRegexReplacer');
@@ -25,6 +26,7 @@ const {
 
   await outputProcessorFactory({
     isReplaceExisting,
+    writeFileToDisk,
   })({
     path: inputFilePath,
     outputText: processedFileText,

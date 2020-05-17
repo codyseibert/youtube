@@ -1,9 +1,9 @@
 exports.outputProcessorFactory = ({
   isReplaceExisting = false,
-  writeFile,
+  writeFileToDisk,
 }) => async ({ outputText, path = null }) => {
   if (isReplaceExisting) {
-    await writeFile({
+    await writeFileToDisk({
       path,
       data: outputText,
     });
