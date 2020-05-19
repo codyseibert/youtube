@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:unit": "jest src/*.test.js",
+    "test:unit": "jest --coverage src/*.test.js",
     "test:integration": "jest integration/*.test.js"
   },
   "keywords": [],
