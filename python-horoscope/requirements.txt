@@ -1,0 +1,17 @@
+appdirs==1.4.4
+attrs==19.3.0
+black==19.10b0
+certifi==2020.4.5.1
+chardet==3.0.4
+click==7.1.2
+get==2019.4.13
+idna==2.9
+pathspec==0.8.0
+post==2019.4.13
+public==2019.4.13
+query-string==2019.4.13
+regex==2020.5.14
+requests==2.23.0
+toml==0.10.1
+typed-ast==1.4.1
+urllib3==1.25.9
