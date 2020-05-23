@@ -1,4 +1,6 @@
-class Score extends Entity {
+import { Entity } from './Entity';
+
+export class Score extends Entity {
   constructor() {
     super();
     this.amount = 0;

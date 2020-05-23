@@ -1,10 +1,20 @@
-class Ship extends Entity {
-  constructor({ createBullet, setLives }) {
+import { Entity } from './Entity';
+
+import shipImage from './images/ship.png';
+
+export class Ship extends Entity {
+  constructor({
+    createBullet,
+    setLives,
+    getOverlappingBullet,
+  }) {
     super({ tag: 'img' });
     this.SPEED = 2;
-    this.el.src = 'images/ship.png';
-    this.el.className = 'ship';
+    this.el.src = shipImage;
+    this.setLives = setLives;
     this.createBullet = createBullet;
+    this.getOverlappingBullet = getOverlappingBullet;
+    this.el.className = 'ship';
     this.position.x = window.innerWidth / 2;
     this.position.y = window.innerHeight - 80;
     this.lives = 3;
@@ -44,14 +54,14 @@ class Ship extends Entity {
     this.position.y = window.innerHeight - 80;
   }
 
-  update({ setLives }) {
+  update() {
     if (this.isDead) return;
 
-    const bullet = getOverlappingBullet(this);
+    const bullet = this.getOverlappingBullet(this);
     if (bullet && bullet.isAlien) {
       this.kill();
       bullet.markForRemoval();
-      setLives(this.lives);
+      this.setLives(this.lives);
 
       setTimeout(() => {
         this.revive();

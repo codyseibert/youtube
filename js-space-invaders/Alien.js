@@ -1,9 +1,13 @@
-class Alien extends Entity {
+import { Entity } from './Entity';
+
+import alienImage from './images/alien.png';
+
+export class Alien extends Entity {
   constructor({ x, y }) {
     super({ tag: 'img' });
     this.direction = 'left';
     this.SPEED = 0.5;
-    this.el.src = 'images/alien.png';
+    this.el.src = alienImage;
     this.el.className = 'alien';
     this.position.x = x;
     this.position.y = y;
@@ -22,7 +26,7 @@ class Alien extends Entity {
     this.position.y += 10;
   }
 
-  update({ getOverlappingBullet, addToScore }) {
+  update({ addToScore, getOverlappingBullet }) {
     if (this.direction === 'left') {
       this.position.x -= this.SPEED;
     } else {

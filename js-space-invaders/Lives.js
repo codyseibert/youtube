@@ -1,4 +1,6 @@
-class Lives extends Entity {
+import { Entity } from './Entity';
+
+export class Lives extends Entity {
   constructor() {
     super();
     this.el.className = 'lives';

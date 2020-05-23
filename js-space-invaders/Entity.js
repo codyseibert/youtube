@@ -1,4 +1,4 @@
-class Entity {
+export class Entity {
   constructor({ tag = 'div' } = {}) {
     this.el = document.createElement(tag);
     document.body.appendChild(this.el);

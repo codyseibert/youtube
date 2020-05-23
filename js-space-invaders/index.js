@@ -1,3 +1,11 @@
+import { Hud } from './Hud';
+import { Ship } from './Ship';
+import { Bullet } from './Bullet';
+import {
+  updateAliens,
+  getRandomLowestAliens,
+} from './Aliens';
+
 const keys = {
   a: false,
   d: false,
@@ -21,9 +29,20 @@ document.addEventListener('keyup', ({ key, keyCode }) => {
 const bullets = [];
 const hud = new Hud();
 
+const isOverlapping = (a, b) => {
+  const rect1 = a.el.getBoundingClientRect();
+  const rect2 = b.el.getBoundingClientRect();
+  return !(
+    rect1.right < rect2.left ||
+    rect1.left > rect2.right ||
+    rect1.bottom < rect2.top ||
+    rect1.top > rect2.bottom
+  );
+};
+
 const getOverlappingBullet = (entity) => {
   for (const bullet of bullets) {
-    if (Util.isOverlapping(entity, bullet)) {
+    if (isOverlapping(entity, bullet)) {
       return bullet;
     }
   }
@@ -40,71 +59,20 @@ const createBullet = (entity, isAlien = false) => {
   );
 };
 
+setInterval(() => {
+  const alien = getRandomLowestAliens();
+  createBullet(alien, true);
+}, 2000);
+
 const setLives = (lives) => hud.setLives(lives);
 
 const ship = new Ship({
   createBullet,
   setLives,
+  getOverlappingBullet,
 });
 
-const aliens = [];
-const aliensGrid = [];
-const ROWS = 5;
-const COLS = 11;
-const ALIEN_OFFSET_X = 100;
-const ALIEN_OFFSET_Y = 40;
-
-for (let row = 0; row < ROWS; row++) {
-  const alienCol = [];
-  for (let col = 0; col < COLS; col++) {
-    const alien = new Alien({
-      x: col * 60 + ALIEN_OFFSET_X,
-      y: row * 60 + ALIEN_OFFSET_Y,
-    });
-    aliens.push(alien);
-    alienCol.push(alien);
-  }
-  aliensGrid.push(alienCol);
-}
-
-const getLeftMostAlien = () => {
-  return aliens.reduce(
-    (best, cur) => {
-      if (cur.position.x < best.position.x) return cur;
-      return best;
-    },
-    { position: { x: 1e9 } }
-  );
-};
-
-const getRightMostAlien = () => {
-  return aliens.reduce(
-    (best, cur) => {
-      if (cur.position.x > best.position.x) return cur;
-      return best;
-    },
-    { position: { x: -1e9 } }
-  );
-};
-
-const getRandomLowestAliens = () => {
-  const lowest = [];
-  for (let col = 0; col < COLS; col++) {
-    for (let row = ROWS - 1; row >= 0; row--) {
-      if (aliensGrid[row][col]) {
-        lowest.push(aliensGrid[row][col]);
-        break;
-      }
-    }
-  }
-  return lowest[parseInt(Math.random() * lowest.length)];
-};
-
 const update = () => {
-  ship.update({
-    setLives,
-  });
-
   if (keys['d']) {
     ship.moveRight();
   } else if (keys['a']) {
@@ -115,30 +83,9 @@ const update = () => {
     ship.fire();
   }
 
+  ship.update();
+
   bullets.forEach((bullet) => bullet.update());
-
-  const leftMost = getLeftMostAlien();
-  if (leftMost.position.x < 20) {
-    aliens.forEach((alien) => {
-      alien.moveRight();
-      alien.moveDown();
-    });
-  }
-
-  const rightMost = getRightMostAlien();
-  if (rightMost.position.x + 33 > window.innerWidth - 20) {
-    aliens.forEach((alien) => {
-      alien.moveLeft();
-      alien.moveDown();
-    });
-  }
-
-  aliens.forEach((alien) =>
-    alien.update({
-      getOverlappingBullet,
-      addToScore: (amount) => hud.addToScore(amount),
-    })
-  );
 
   bullets.forEach((bullet) => {
     if (bullet.shouldRemove) {
@@ -147,27 +94,11 @@ const update = () => {
     }
   });
 
-  aliens.forEach((alien) => {
-    if (alien.shouldRemove) {
-      alien.remove();
-      aliens.splice(aliens.indexOf(alien), 1);
-    }
+  updateAliens({
+    getOverlappingBullet,
+    addToScore: (amount) => hud.addToScore(amount),
   });
-
-  for (let row = 0; row < aliensGrid.length; row++) {
-    for (let col = 0; col < aliensGrid[row].length; col++) {
-      const alien = aliensGrid[row][col];
-      if (alien && alien.shouldRemove) {
-        aliensGrid[row][col] = null;
-      }
-    }
-  }
 };
-
-setInterval(() => {
-  const alien = getRandomLowestAliens();
-  createBullet(alien, true);
-}, 2000);
 
 setInterval(() => {
   update();

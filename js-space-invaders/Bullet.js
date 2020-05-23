@@ -1,4 +1,6 @@
-class Bullet extends Entity {
+import { Entity } from './Entity';
+
+export class Bullet extends Entity {
   constructor({ x, y, isAlien }) {
     super();
     this.position.x = x;

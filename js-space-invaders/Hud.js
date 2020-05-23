@@ -1,4 +1,7 @@
-class Hud {
+import { Score } from './Score';
+import { Lives } from './Lives';
+
+export class Hud {
   constructor() {
     this.score = new Score();
     this.score.position.x = window.innerWidth / 2;
