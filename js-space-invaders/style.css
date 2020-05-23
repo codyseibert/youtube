@@ -18,3 +18,13 @@ body {
 .alien {
   position: fixed;
 }
+
+.score {
+  position: fixed;
+  color: white;
+}
+
+.lives {
+  position: fixed;
+  color: white;
+}

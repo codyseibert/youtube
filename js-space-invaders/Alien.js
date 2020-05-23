@@ -22,7 +22,7 @@ class Alien extends Entity {
     this.position.y += 10;
   }
 
-  update({ getOverlappingBullet }) {
+  update({ getOverlappingBullet, addToScore }) {
     if (this.direction === 'left') {
       this.position.x -= this.SPEED;
     } else {
@@ -33,6 +33,7 @@ class Alien extends Entity {
     if (bullet && !bullet.isAlien) {
       this.markForRemoval();
       bullet.markForRemoval();
+      addToScore(20);
     }
   }
 }

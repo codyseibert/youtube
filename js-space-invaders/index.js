@@ -19,6 +19,7 @@ document.addEventListener('keyup', ({ key, keyCode }) => {
 });
 
 const bullets = [];
+const hud = new Hud();
 
 const getOverlappingBullet = (entity) => {
   for (const bullet of bullets) {
@@ -39,19 +40,26 @@ const createBullet = (entity, isAlien = false) => {
   );
 };
 
-const ship = new Ship({ createBullet });
+const setLives = (lives) => hud.setLives(lives);
+
+const ship = new Ship({
+  createBullet,
+  setLives,
+});
 
 const aliens = [];
 const aliensGrid = [];
 const ROWS = 5;
 const COLS = 11;
+const ALIEN_OFFSET_X = 100;
+const ALIEN_OFFSET_Y = 40;
 
 for (let row = 0; row < ROWS; row++) {
   const alienCol = [];
   for (let col = 0; col < COLS; col++) {
     const alien = new Alien({
-      x: col * 60 + 100,
-      y: row * 60 + 20,
+      x: col * 60 + ALIEN_OFFSET_X,
+      y: row * 60 + ALIEN_OFFSET_Y,
     });
     aliens.push(alien);
     alienCol.push(alien);
@@ -93,7 +101,10 @@ const getRandomLowestAliens = () => {
 };
 
 const update = () => {
-  ship.update(20);
+  ship.update({
+    delta: 20,
+    setLives,
+  });
 
   if (keys['d']) {
     ship.moveRight();
@@ -124,7 +135,10 @@ const update = () => {
   }
 
   aliens.forEach((alien) =>
-    alien.update({ getOverlappingBullet })
+    alien.update({
+      getOverlappingBullet,
+      addToScore: (amount) => hud.addToScore(amount),
+    })
   );
 
   bullets.forEach((bullet) => {
