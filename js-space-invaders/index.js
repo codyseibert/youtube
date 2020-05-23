@@ -102,7 +102,6 @@ const getRandomLowestAliens = () => {
 
 const update = () => {
   ship.update({
-    delta: 20,
     setLives,
   });
 
