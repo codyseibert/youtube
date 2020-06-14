@@ -1,24 +1,48 @@
 body {
-  margin: 0;
-  background-color: #222;
-  /* font-family: "Walter Turncoat", cursive; */
-  font-family: "Rock Salt", cursive;
+  background-color: black;
+  color: white;
+  font-family: 'Rock Salt', cursive;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.square {
+  position: relative;
+  cursor: pointer;
+}
+
+.square::after {
+  content: '';
+  display: block;
+  padding-bottom: 100%;
+}
+
+.square:hover .gray {
+  opacity: 0;
+}
+
+.person {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  background-size: cover;
+  background-position: 50%;
 }
 
 .grid {
-  /* margin: 0 auto;
-          width: 800px; */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
-@media only screen and (max-width: 1400px) {
+@media only screen and (max-width: 1024px) {
   .grid {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 700px) {
   .grid {
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -30,129 +54,49 @@ body {
   }
 }
 
-.wrapper {
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-}
-
-.square {
-  position: relative;
-}
-
-.square:after {
-  content: "";
-  display: block;
-  padding-bottom: 100%;
-}
-
-.content {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  font-size: 20px;
-  text-align: center;
-  color: white;
-}
-
-img {
-  width: 100%;
-  height: 100%;
-}
-
 .name {
-  bottom: 40px;
   position: absolute;
+  bottom: 20px;
   left: 20px;
-}
-
-.name::after {
-  content: " ";
   border-bottom: 3px solid cyan;
-  width: 80px;
-  bottom: -20px;
-  display: block;
-  position: absolute;
-}
-
-.floyd {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  background-size: cover;
-  background-position: 50%;
-}
-
-.taylor {
+  z-index: 1;
 }
 
 .gray {
-  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-
-.wrapper:hover .gray {
-  background-color: rgba(0, 0, 0, 0);
-}
-
-.title {
-  text-align: center;
-  margin-bottom: 40px;
-  margin-top: 40px;
-}
-
-h1 {
-  color: white;
-}
-
-a {
-  color: white;
+  position: absolute;
 }
 
 .modal {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
   width: 100%;
   height: 100%;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-}
-
-.hidden {
-  display: none;
+  position: fixed;
+  top: 0px;
 }
 
 .inner {
-  box-shadow: 2px 2px 10px #999;
-  text-overflow: auto;
-  width: 800px;
   margin: 0 auto;
+  border-radius: 10px;
+  width: 600px;
   background-color: white;
-  color: black;
-  border-radius: 20px;
-  padding: 40px;
   height: 500px;
+  color: black;
+  padding: 30px;
   overflow-y: auto;
   position: relative;
-  font-family: "Open Sans", sans-serif;
-  font-size: 24px;
-}
-
-.modal .inner h1 {
-  color: black;
-}
-
-.modal .inner a {
-  color: black;
 }
 
 .modal .inner .close {
   position: absolute;
-  right: 40px;
-  top: 40px;
+  top: 20px;
+  right: 20px;
+  color: black;
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
 }

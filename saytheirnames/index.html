@@ -2,31 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Say Their Names</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Walter+Turncoat&display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="modal hidden">
+    <h1 class="text-center">Say Their Names</h1>
+
+    <div class="grid"></div>
+
+    <div class="modal hide">
       <div class="inner">
-        <h1 id="modal-name"></h1>
-        <a class="close" href="#">X</a>
-        <div id="modal-text"></div>
+        <h2 class="modal-name"></h2>
+        <p class="modal-bio"></p>
+        <div class="close">X</div>
       </div>
     </div>
-
-    <div class="title">
-      <h1>Say Their Names!</h1>
-    </div>
-    <div class="grid"></div>
 
     <script src="lives.js"></script>
     <script src="index.js"></script>

@@ -1,39 +1,41 @@
+/**
+ * A util function which converts a raw html string into a html dom node
+ *
+ * @param {string} html the html string to convert
+ */
 function htmlToElement(html) {
-  const template = document.createElement("template");
+  const template = document.createElement('template');
   html = html.trim();
   template.innerHTML = html;
   return template.content.firstChild;
 }
 
-const modal = document.querySelector(".modal");
+const modal = document.querySelector('.modal');
+const closeButton = modal.querySelector('.close');
 
-lives.forEach((life) => {
-  const personHtml = `
-                <div class="wrapper">
-                  <div class="square">
-                    <div class="content">
-                      <div class="floyd" style="background-image: url('${life.image}')"></div>
-                      <div class="gray"></div>
-                      <div class="name">
-                        ${life.name}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-        `;
-
-  const personDom = htmlToElement(personHtml);
-  console.log(personDom);
-  personDom.addEventListener("click", () => {
-    modal.classList.remove("hidden");
-    modal.querySelector("#modal-name").innerHTML = life.name;
-    modal.querySelector("#modal-text").innerHTML = life.bio;
-  });
-
-  document.querySelector(".grid").appendChild(personDom);
+closeButton.addEventListener('click', () => {
+  modal.classList.add('hide');
 });
 
-document.querySelector(".close").addEventListener("click", (event) => {
-  event.preventDefault();
-  modal.classList.add("hidden");
+lives.forEach((life) => {
+  const personHTML = `
+    <div class="square">
+      <div 
+        class="person" 
+        style="background-image: url('${life.image}')"
+      >
+        <div class="name">${life.name}</div>
+      </div>
+      <div class="gray"></div>
+    </div>
+  `;
+  const personDom = htmlToElement(personHTML);
+  document.querySelector('.grid').appendChild(personDom);
+
+  personDom.addEventListener('click', () => {
+    modal.classList.remove('hide');
+    modal.querySelector('.modal-name').innerHTML =
+      life.name;
+    modal.querySelector('.modal-bio').innerHTML = life.bio;
+  });
 });
