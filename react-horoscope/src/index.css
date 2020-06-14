@@ -13,33 +13,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas,
     'Courier New', monospace;
 }
-
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 10px;
-}
-
-.sign {
-  font-size: 30px;
-  cursor: pointer;
-  background-color: white;
-  border: 2px solid white;
-  border-radius: 10px;
-}
-
-.sign:hover {
-  border: 2px solid yellow;
-  background-color: gray;
-}
-
-.symbol {
-  font-size: 40px;
-}
-
-.timeframe {
-  font-size: 30px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  cursor: pointer;
-}

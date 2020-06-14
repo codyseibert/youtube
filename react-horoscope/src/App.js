@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Symbol } from './components/Symbol';
 import { SelectSign } from './components/SelectSign';
 import { SelectTimeframe } from './components/SelectTimeframe';
 import { Horoscope } from './components/Horoscope';
@@ -13,35 +12,28 @@ function App() {
   ] = useState(null);
 
   const restart = () => {
-    setSelectedTimeframe(null);
     setSelectedSign(null);
+    setSelectedTimeframe(null);
   };
 
   return (
     <div className="App">
       <h1>The Horoscope App</h1>
-
       {!selectedSign && (
         <SelectSign onSignSelected={setSelectedSign} />
       )}
       {selectedSign && !selectedTimeframe && (
-        <div>
-          <Symbol sign={selectedSign}></Symbol>
-          <h2>{selectedSign}</h2>
-          <SelectTimeframe
-            onTimeframeSelected={setSelectedTimeframe}
-          />
-        </div>
+        <SelectTimeframe
+          onTimeframeSelected={setSelectedTimeframe}
+        />
       )}
       {selectedSign && selectedTimeframe && (
-        <>
-          <Horoscope
-            timeframe={selectedTimeframe}
-            sign={selectedSign}
-          />
-          <button onClick={restart}>Restart</button>
-        </>
+        <Horoscope
+          sign={selectedSign}
+          timeframe={selectedTimeframe}
+        />
       )}
+      <button onClick={restart}>Restart</button>
     </div>
   );
 }

@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { getHoroscope } from '../services/api';
 
-export const Horoscope = ({ timeframe, sign }) => {
-  const [horoscope, setHoroscope] = useState(null);
+export const Horoscope = ({ sign, timeframe }) => {
+  const [horoscope, setHoroscope] = useState([]);
 
   useEffect(() => {
-    getHoroscope(sign, timeframe).then((horoscope) => {
-      setHoroscope(horoscope);
-    });
+    getHoroscope(sign, timeframe).then(setHoroscope);
   }, [sign, timeframe]);
 
   return (
     <div>
-      <h3>
-        {timeframe}, your {sign} horoscope is...
-      </h3>
+      <h2>
+        {timeframe}, your horoscope for {sign} is...
+      </h2>
       <p>{horoscope}</p>
     </div>
   );
