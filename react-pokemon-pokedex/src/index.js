@@ -6,11 +6,15 @@ import * as serviceWorker from './serviceWorker';
 
 import { Provider } from 'react-redux';
 import store from './store';
+import { ConnectedRouter } from 'connected-react-router';
+import { history } from './store';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

@@ -36,3 +36,41 @@
     transform: rotate(360deg);
   }
 }
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.pokedex {
+  background-color: red;
+  width: 500px;
+  height: 300px;
+  border-radius: 20px;
+  padding: 20px;
+  position: relative;
+  color: white;
+  text-align: center;
+  font-size: 20px;
+  box-shadow: 5px 5px 20px white;
+}
+
+.pokedex form {
+  position: absolute;
+  bottom: 20px;
+}
+
+.pokedex form input {
+  padding: 10px;
+  outline: none;
+}
+
+.pokedex form button {
+  padding: 10px;
+}
+
+.loading {
+  margin-top: 100px;
+}
