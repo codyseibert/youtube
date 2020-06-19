@@ -25,10 +25,11 @@ function App() {
   return (
     <div className="App">
       <form onSubmit={submit}>
-        <div class="form-group">
+        <div className="form-group">
           <label>Email address</label>
           <input
-            class="form-control"
+            value={email}
+            className="form-control"
             placeholder="Email"
             onChange={(e) =>
               setEmail(e.currentTarget.value)
@@ -36,29 +37,29 @@ function App() {
           ></input>
           <small
             id="emailHelp"
-            class="form-text text-danger"
+            className="form-text text-danger"
           >
             {errors.email}
           </small>
         </div>
 
-        <div class="form-group">
+        <div className="form-group">
           <label>Password</label>
           <input
-            onChange={validate}
-            class="form-control"
+            className="form-control"
             placeholder="Password"
+            value={password}
             onChange={(e) =>
               setPassword(e.currentTarget.value)
             }
             type="password"
           ></input>
-          <small class="form-text text-danger">
+          <small className="form-text text-danger">
             {errors.password}
           </small>
         </div>
 
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" className="btn btn-primary">
           Submit
         </button>
       </form>
