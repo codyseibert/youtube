@@ -1,11 +1,10 @@
 import { push } from 'connected-react-router';
-const LOADED = 'pokedex/pokemon/LOADED';
-const SET_SEARCH = 'pokedex/pokemon/SET_SEARCH';
+const SET_POKEMON = 'pokedex/pokemon/SET_POKEMON';
+const SET_ERROR = 'pokedex/pokemon/SET_ERROR';
 
 const initialState = {
   pokemon: null,
-  search: '',
-  isLoading: false,
+  error: null,
 };
 
 export default function reducer(
@@ -13,42 +12,40 @@ export default function reducer(
   action = {}
 ) {
   switch (action.type) {
-    case LOADED:
+    case SET_POKEMON:
       return {
         ...state,
         pokemon: action.payload,
-        isLoading: false,
       };
-    case SET_SEARCH:
+    case SET_ERROR:
       return {
         ...state,
-        search: action.payload,
-        isLoading: true,
+        error: action.payload,
       };
     default:
       return state;
   }
 }
 
-export function pokemonLoaded(pokemon) {
-  return { type: LOADED, payload: pokemon };
-}
+const setPokemon = (pokemon) => {
+  return { type: SET_POKEMON, payload: pokemon };
+};
 
-export function setSearch(pokemon) {
-  return { type: SET_SEARCH, payload: pokemon };
-}
+const setError = (error) => {
+  return { type: SET_ERROR, payload: error };
+};
 
-export function loadPokemon(name) {
+export const loadPokemon = (name) => {
   return (dispatch) => {
-    dispatch(setSearch(name));
     fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
       .then((response) => response.json())
       .then((pokemon) => {
-        dispatch(pokemonLoaded(pokemon));
-        dispatch(push(`/pokemon/${pokemon.name}`));
+        dispatch(setPokemon(pokemon));
+        dispatch(push(`/pokemon/${name}`));
       })
-      .catch(() => {
+      .catch((error) => {
+        dispatch(setError(error));
         dispatch(push('/not-found'));
       });
   };
-}
+};

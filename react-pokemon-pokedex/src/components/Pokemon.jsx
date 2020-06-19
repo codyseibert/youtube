@@ -1,16 +1,13 @@
 import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadPokemon } from '../reducers/pokemon';
-import { useParams } from 'react-router-dom';
 
 export const Pokemon = () => {
+  const { pokemonName } = useParams();
   const pokemon = useSelector(
     (state) => state.pokemon.pokemon
   );
-  const isLoading = useSelector(
-    (state) => state.pokemon.isLoading
-  );
-  const { pokemonName } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,17 +15,16 @@ export const Pokemon = () => {
   }, [dispatch, pokemon, pokemonName]);
 
   return (
-    <div>
-      {!isLoading && pokemon && (
-        <div>
-          <h1>{pokemon.name}</h1>
+    <>
+      {pokemon && (
+        <div className="text-center">
+          <h1>{pokemonName}</h1>
           <img
             src={pokemon.sprites.front_default}
-            alt={pokemon.name}
+            alt={pokemonName}
           />
         </div>
       )}
-      {isLoading && <h1 className="loading">LOADING...</h1>}
-    </div>
+    </>
   );
 };

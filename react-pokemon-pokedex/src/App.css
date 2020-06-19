@@ -37,11 +37,8 @@
   }
 }
 
-.box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+h1 {
+  color: white;
 }
 
 .pokedex {
@@ -50,27 +47,47 @@
   height: 300px;
   border-radius: 20px;
   padding: 20px;
+  box-shadow: 5px 5px 10px white;
   position: relative;
-  color: white;
-  text-align: center;
-  font-size: 20px;
-  box-shadow: 5px 5px 20px white;
 }
 
-.pokedex form {
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+form {
   position: absolute;
   bottom: 20px;
 }
 
-.pokedex form input {
+form input {
   padding: 10px;
   outline: none;
+  text-align: center;
 }
 
-.pokedex form button {
+form button {
   padding: 10px;
+  text-align: center;
 }
 
-.loading {
-  margin-top: 100px;
+.mt-4 {
+  margin-top: 40px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: white;
+  text-align: center;
+}
+
+.text-center {
+  text-align: center;
 }
