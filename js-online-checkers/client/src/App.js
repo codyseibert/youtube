@@ -9,7 +9,9 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Navbar from 'react-bootstrap/Navbar';
+import Modal from 'react-bootstrap/Modal';
 import Nav from 'react-bootstrap/Nav';
+import Button from 'react-bootstrap/Button';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -21,9 +23,12 @@ function App() {
   const [page, setPage] = useState('Lobby');
   const [games, setGames] = useState([]);
   const [color, setColor] = useState('');
-  const [game, setGame] = useState({ board: [] });
+  const [game, setGame] = useState({ board: [], chat: [] });
   const [gameId, setGameId] = useState(null);
   const [socket, setSocket] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [modalTitle, setModalTitle] = useState('');
+  const [modalText, setModalText] = useState('');
 
   const joinGame = (gameId) => {
     socket.emit('join-game', gameId);
@@ -59,6 +64,10 @@ function App() {
     setPage(PAGE_GAME);
   };
 
+  const sendChat = (message) => {
+    socket.emit('chat-message', message);
+  };
+
   useEffect(() => {
     const newSocket = io('http://localhost:4000', {
       transports: ['websocket'],
@@ -67,6 +76,7 @@ function App() {
       setGameId(null);
       setColor('');
       setPage(PAGE_LOBBY);
+
       alert('The server crashed or restarted');
     });
     newSocket.on('games', (games) => {
@@ -80,13 +90,17 @@ function App() {
       setGameId(null);
       setColor('');
       setPage(PAGE_LOBBY);
-      alert('The game has ended');
+      setShowModal(true);
+      setModalText('Your opponent has left the game');
+      setModalTitle('Game Over');
     });
     newSocket.on('winner', (winner) => {
       alert(`${winner} has won the game!`);
     });
     setSocket(newSocket);
   }, []);
+
+  const handleCloseModal = () => setShowModal(false);
 
   return (
     <>
@@ -119,11 +133,26 @@ function App() {
                 game={game}
                 leaveGame={leaveGame}
                 movePiece={movePiece}
+                sendChat={sendChat}
               />
             )}
           </Col>
         </Row>
       </Container>
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>{modalTitle}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modalText}</Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="primary"
+            onClick={handleCloseModal}
+          >
+            OK
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

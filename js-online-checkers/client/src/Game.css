@@ -54,3 +54,13 @@
   justify-content: center;
   flex-direction: column;
 }
+
+.chat-button {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+.chat-input-wrapper {
+  position: relative;
+}

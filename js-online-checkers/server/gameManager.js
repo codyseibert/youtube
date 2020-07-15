@@ -29,27 +29,28 @@ exports.createGame = ({ player, name }) => {
         color: 'red',
       },
     ],
+    chat: [],
     id: nextGameId++,
-    // board: [
-    //   [1, 0, 1, 0, 1, 0, 1, 0],
-    //   [0, 1, 0, 1, 0, 1, 0, 1],
-    //   [1, 0, 1, 0, 1, 0, 1, 0],
-    //   [0, 0, 0, 0, 0, 0, 0, 0],
-    //   [0, 0, 0, 0, 0, 0, 0, 0],
-    //   [0, 2, 0, 0, 0, 2, 0, 2],
-    //   [2, 0, 2, 0, 2, 0, 2, 0],
-    //   [0, 2, 0, 2, 0, 2, 0, 2],
-    // ],
     board: [
+      [1, 0, 1, 0, 1, 0, 1, 0],
+      [0, 1, 0, 1, 0, 1, 0, 1],
+      [1, 0, 1, 0, 1, 0, 1, 0],
       [0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 1, 0, 0, 0, 0, 0],
-      [0, 2, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0],
-      [0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 2, 0, 0, 0, 2, 0, 2],
+      [2, 0, 2, 0, 2, 0, 2, 0],
+      [0, 2, 0, 2, 0, 2, 0, 2],
     ],
+    // board: [
+    //   [0, 0, 0, 0, 0, 0, 0, 0],
+    //   [0, 0, 0, 0, 0, 0, 0, 0],
+    //   [0, 0, 0, 0, 0, 0, 0, 0],
+    //   [0, 0, 0, 0, 0, 0, 0, 0],
+    //   [0, 0, 1, 0, 0, 0, 0, 0],
+    //   [0, 2, 0, 0, 0, 0, 0, 0],
+    //   [0, 0, 0, 0, 0, 0, 0, 0],
+    //   [0, 0, 0, 0, 0, 0, 0, 0],
+    // ],
   };
   games.push(game);
   return game;
@@ -83,9 +84,10 @@ exports.endGame = ({ player, winner }) => {
   // players might disconnect while in the lobby
   if (!game) return;
   games.splice(games.indexOf(game), 1);
-  game.players.forEach((player) => {
-    player.socket.emit('end-game');
-    player.socket.emit('winner', winner);
+  game.players.forEach((currentPlayer) => {
+    if (player !== currentPlayer.socket)
+      currentPlayer.socket.emit('end-game');
+    if (winner) currentPlayer.socket.emit('winner', winner);
   });
 };
 
@@ -117,4 +119,9 @@ exports.isGameOver = ({ player }) => {
   } else {
     return false;
   }
+};
+
+exports.addChatMessage = ({ player, message }) => {
+  const game = getGameForPlayer(player);
+  game.chat.push(message);
 };

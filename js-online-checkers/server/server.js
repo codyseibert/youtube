@@ -5,72 +5,38 @@ const io = require('socket.io')(http, {
   transports: ['websocket'],
 });
 
-const {
-  isGameOver,
-  getGames,
-  getGameById,
-  addPlayerToGame,
-  endGame,
-  movePiece,
-  createGame,
-} = require('./gameManager');
+const onDisconnectFactory = require('./handlers/onDisconnectFactory');
+const movePieceFactory = require('./handlers/movePieceFactory');
+const leaveGameFactory = require('./handlers/leaveGameFactory');
+const createGameFactory = require('./handlers/createGameFactory');
+const joinGameFactory = require('./handlers/joinGameFactory');
+const chatMessageFactory = require('./handlers/chatMessageFactory');
 
-const sendGames = (sender) => {
-  sender.emit('games', getGames());
-};
+const sendGames = require('./helpers/sendGames');
 
 io.on('connection', (socket) => {
   sendGames(socket);
 
-  socket.on('disconnect', () => {
-    endGame({ player: socket });
-    sendGames(io);
-  });
-
   socket.on(
-    'move-piece',
-    ({ selectedPiece, destination }) => {
-      movePiece({
-        player: socket,
-        selectedPiece,
-        destination,
-      });
-      const winner = isGameOver({ player: socket });
-      if (winner !== false) {
-        endGame({ player: socket, winner });
-      }
-      sendGames(io);
-    }
+    'disconnect',
+    onDisconnectFactory({ io, socket })
   );
 
-  socket.on('leave-game', () => {
-    endGame({ player: socket });
-    sendGames(io);
-  });
+  socket.on('move-piece', movePieceFactory({ io, socket }));
 
-  const joinGame = ({ gameId }) => {
-    const game = getGameById(gameId);
-    if (game.numberOfPlayers < 2) {
-      const color = addPlayerToGame({
-        player: socket,
-        gameId,
-      });
-      sendGames(io);
-      socket.emit('color', color);
-    }
-  };
+  socket.on('leave-game', leaveGameFactory({ socket, io }));
 
-  socket.on('create-game', (name) => {
-    const game = createGame({ player: socket, name });
-    sendGames(io);
-    socket.emit('your-game-created', game.id);
-    socket.emit('color', 'red');
-  });
+  socket.on(
+    'chat-message',
+    chatMessageFactory({ socket, io })
+  );
 
-  socket.on('join-game', (gameId) => {
-    joinGame({ gameId });
-    sendGames(io);
-  });
+  socket.on(
+    'create-game',
+    createGameFactory({ io, socket })
+  );
+
+  socket.on('join-game', joinGameFactory({ io, socket }));
 });
 
 http.listen(4000, () => {
