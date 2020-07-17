@@ -36,36 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-.accordion-header {
-  cursor: pointer;
-}
-
-.accordion-header:hover {
-  background-color: #eee;
-}
-
-.accordion-header .accordion-icon {
-  width: 50px;
-  float: left;
-  padding-top: 10px;
-  padding-left: 10px;
-}
-
-.accordion-header .accordion-title {
-  display: inline-block;
-}
-
-.accordion-header .accordion-state {
-  font-size: 50px;
-  float: right;
-  padding-top: 6px;
-  padding-right: 10px;
-}
-
-.accordion-body {
-  text-align: left;
-  padding-left: 10px;
-  padding-right: 10px;
-  line-height: 30px;
-}
