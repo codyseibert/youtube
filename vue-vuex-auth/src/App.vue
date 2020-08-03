@@ -1,18 +1,11 @@
 <template>
-  <div id="app"></div>
+  <div id="app">HELLO WORLD</div>
 </template>
 
 <script>
-import { mapState } from "vuex";
-
 export default {
   name: "App",
   components: {},
-  computed: {
-    ...mapState({
-      user: "user",
-    }),
-  },
 };
 </script>
 
