@@ -1,0 +1,29 @@
+{
+  "name": "hyper-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^4.5.2",
+    "hyperhtml": "^2.33.0",
+    "jquery": "^3.5.1",
+    "lodash": "^4.17.19",
+    "navigo": "^7.1.2",
+    "parcel": "^1.12.4",
+    "popper.js": "^1.16.1",
+    "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.6.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.22.0",
+    "typescript": "^3.9.7"
+  }
+}
