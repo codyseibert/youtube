@@ -4,21 +4,23 @@ export const SelectTimeframe = ({
   onTimeframeSelected,
 }) => {
   return (
-    <div>
-      <h2>Load your horoscope for...</h2>
+    <>
+      <h2>Please select a timeframe...</h2>
       <div className="grid">
         {['yesterday', 'today', 'tomorrow'].map(
-          (timeframe) => (
+          (timeframes) => (
             <button
-              key={timeframe}
               className="timeframe"
-              onClick={() => onTimeframeSelected(timeframe)}
+              key={timeframes}
+              onClick={() =>
+                onTimeframeSelected(timeframes)
+              }
             >
-              {timeframe}
+              {timeframes}
             </button>
           )
         )}
       </div>
-    </div>
+    </>
   );
 };

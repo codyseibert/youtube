@@ -9,7 +9,7 @@ const App = ({
   users,
   isLoading,
   incrementCountAction,
-  requestUsersAction
+  requestUsersAction,
 }) => {
   useEffect(() => {
     requestUsersAction();
@@ -32,15 +32,15 @@ const App = ({
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isLoading: state.users.isLoading,
   users: state.users.entries,
-  count: state.count
+  count: state.count,
 });
 
 const mapDispatchToProps = {
   incrementCountAction,
-  requestUsersAction
+  requestUsersAction,
 };
 
 export default connect(

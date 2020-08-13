@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>HTML CSS Practice</title>
+
+    <style>
+      body {
+        height: 800px;
+      }
+
+      header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        margin-bottom: 30px;
+      }
+
+      header .link {
+        text-align: right;
+        text-decoration: none;
+        color: black;
+        font-size: 14px;
+      }
+
+      h1 {
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: -6px;
+      }
+
+      .content {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .buttons {
+        margin-bottom: 20px;
+      }
+
+      .buttons button {
+        padding: 10px;
+        padding-left: 14px;
+        padding-right: 14px;
+        background-color: rgba(0, 0, 0, 0);
+        border: 1px solid #eee;
+        color: #aaa;
+        transition: color 0.5s;
+        cursor: pointer;
+        outline: none;
+        margin-bottom: 12px;
+        margin-right: 10px;
+        font-size: 14px;
+      }
+
+      .buttons button:hover {
+        color: black;
+      }
+
+      .buttons button:focus {
+        border: 1px solid black;
+        color: black;
+      }
+
+      label {
+        display: block;
+        color: #777;
+        margin-bottom: 10px;
+      }
+
+      input {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        padding-left: 8px;
+        font-size: 16px;
+        width: 300px;
+        border: none;
+        outline: none;
+        background-color: #f5f5f5;
+        color: black;
+        margin-bottom: 80px;
+      }
+
+      input:focus {
+        border-bottom: 1px solid black;
+      }
+
+      .navigation {
+        text-align: right;
+      }
+
+      .navigation button {
+        padding: 20px;
+        outline: none;
+        border: none;
+        background-color: rgba(0, 0, 0, 0);
+        cursor: pointer;
+      }
+
+      .navigation .skip {
+        background-image: linear-gradient(
+          to left,
+          white 50%,
+          #eee 50%
+        );
+        background-size: 200% 100%;
+        background-position: right bottom;
+        transition: all 0.5s;
+      }
+
+      .navigation .skip:hover {
+        background-position: left bottom;
+      }
+
+      .navigation .next {
+        background-color: #eee;
+        color: #999;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>S</div>
+      <a href="#" class="link">I'M JUST BROWSING</a>
+    </header>
+
+    <div class="content">
+      <h1>What's your site about?</h1>
+      <p>
+        This will help us find you some starting ideas and
+        examples.
+      </p>
+
+      <div class="buttons">
+        <button>Fashion</button>
+        <button>Education</button>
+        <button>Non-Profit</button>
+        <button>Fitness</button>
+        <button>Consulting</button>
+        <button>Restaurants</button>
+        <button>Technology</button>
+        <button>Health & Beauty</button>
+        <button>Design</button>
+        <button>Personal & CV</button>
+        <button>Music</button>
+        <button>Food</button>
+        <button>Photography</button>
+        <button>Interior Design</button>
+        <button>Magazine</button>
+        <button>Art</button>
+        <button>Marketing</button>
+        <button>Gaming</button>
+        <button>Travel</button>
+        <button>Jewelry</button>
+        <button>Politics</button>
+      </div>
+
+      <label>Don't see what you’re looking for? </label>
+      <input placeholder="Describe your site..." />
+
+      <div class="navigation">
+        <button class="skip">SKIP</button>
+        <button class="next">NEXT</button>
+      </div>
+    </div>
+  </body>
+</html>

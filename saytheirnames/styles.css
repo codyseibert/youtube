@@ -1,0 +1,102 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Rock Salt', cursive;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.square {
+  position: relative;
+  cursor: pointer;
+}
+
+.square::after {
+  content: '';
+  display: block;
+  padding-bottom: 100%;
+}
+
+.square:hover .gray {
+  opacity: 0;
+}
+
+.person {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  background-size: cover;
+  background-position: 50%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+@media only screen and (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.name {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  border-bottom: 3px solid cyan;
+  z-index: 1;
+}
+
+.gray {
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.modal {
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+}
+
+.inner {
+  margin: 0 auto;
+  border-radius: 10px;
+  width: 600px;
+  background-color: white;
+  height: 500px;
+  color: black;
+  padding: 30px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal .inner .close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: black;
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}
