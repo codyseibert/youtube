@@ -5,14 +5,21 @@ import { createMutations } from "./mutations";
 import { createInitialState } from "./state";
 import { Navigate } from "../router";
 
+const deepFreeze = (obj) => {
+  Object.keys(obj).forEach((prop) => {
+    if (obj[prop] === "object" && !Object.isFrozen(obj[prop]))
+      deepFreeze(obj[prop]);
+  });
+  return Object.freeze(obj);
+};
+
 export const createStore = (render, navigate: Navigate) => {
   const state = createInitialState();
 
-  const getState = () => cloneDeep(state);
+  const getState = () => deepFreeze(cloneDeep(state));
 
   const setState = (newState) => {
     Object.assign(state, newState);
-    console.log("state changed to: ", state);
     render({
       setState,
       getState,

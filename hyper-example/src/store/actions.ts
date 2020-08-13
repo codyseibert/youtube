@@ -2,6 +2,7 @@ import { Navigate } from "../router";
 import { Mutations, Page } from "./mutations";
 import { State, Todo } from "./state";
 import { Getters } from "./getters";
+import { persistTodos } from "../services/todos";
 
 export interface Actions {
   logout(): void;
@@ -9,6 +10,7 @@ export interface Actions {
   navigateToLogin(updateUrl: boolean): void;
   navigateToRegister(updateUrl: boolean): void;
   verifyLoggedIn(): void;
+  deleteTodo(todo: Todo): void;
   toggleTodo(todo: Todo): void;
   createTodo(text: string): void;
 }
@@ -23,12 +25,19 @@ export const createActions = (
     logout: () => {
       mutations.logout();
       actions.navigateToLogin(true);
+      localStorage.removeItem("credentials");
+    },
+    deleteTodo: (todo) => {
+      mutations.deleteTodo(todo);
+      persistTodos(state.todos);
     },
     toggleTodo: (todo: Todo) => {
       mutations.toggleTodo(todo);
+      persistTodos(state.todos);
     },
     createTodo: (text) => {
       mutations.createTodo(text);
+      persistTodos(state.todos);
     },
     navigateToHome: (updateUrl) => {
       updateUrl && navigate("/");

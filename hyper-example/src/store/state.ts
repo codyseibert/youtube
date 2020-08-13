@@ -1,4 +1,5 @@
 import { Page } from "./mutations";
+import { getTodos } from "../services/todos";
 
 export interface Todo {
   id: string;
@@ -24,7 +25,7 @@ export const createInitialState = (): State => ({
   username: null,
   showHeader: true,
   page: Page.Home,
-  todos: [],
+  todos: getTodos(),
   errors: null,
   credentials,
 });

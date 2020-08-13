@@ -8,9 +8,9 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import { State } from "./store/state";
-import { Mutations } from "./store/mutations";
-import { Actions } from "./store/actions";
-import { Getters } from "./store/getters";
+import { Mutations, createMutations } from "./store/mutations";
+import { Actions, createActions } from "./store/actions";
+import { Getters, createGetters } from "./store/getters";
 
 export interface Context {
   setState(state: object): void;
@@ -25,17 +25,19 @@ export const render = ({
   setState,
   getState,
   mutations,
-  getters,
+  // getters,
   actions,
   router,
 }) => {
+  const stateClone = getState();
+  const getters = createGetters(stateClone);
   const context: Context = {
     setState,
-    state: getState(),
+    state: stateClone,
     mutations,
     getters,
     html,
-    actions,
+    actions: createActions(mutations, stateClone, getters, navigate),
   };
 
   return html(document.querySelector("#app"))`${App(context)}`;

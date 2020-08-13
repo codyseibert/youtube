@@ -21,6 +21,7 @@ export interface Mutations {
   setPage(page: string): void;
   createTodo(text: string): void;
   toggleTodo(todo: Todo): void;
+  deleteTodo(todo: Todo): void;
 }
 
 export const createMutations = (state: State, setState): Mutations => ({
@@ -30,6 +31,11 @@ export const createMutations = (state: State, setState): Mutations => ({
         username,
         password,
       },
+    });
+  },
+  deleteTodo: (todo) => {
+    setState({
+      todos: state.todos.filter((t) => t.id !== todo.id),
     });
   },
   toggleTodo: (todoToToggle) => {

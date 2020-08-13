@@ -5,8 +5,11 @@ export interface Getters {
 }
 
 export const createGetters = (state: State) => ({
-  isLoggedIn: () =>
-    state.credentials &&
-    !!state.credentials.username &&
-    !!state.credentials.password,
+  isLoggedIn: () => {
+    return (
+      state.credentials &&
+      !!state.credentials.username &&
+      !!state.credentials.password
+    );
+  },
 });
