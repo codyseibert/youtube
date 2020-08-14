@@ -37,7 +37,7 @@ export default function ImageSlider({ images }) {
               timeout={1000}
               classNames={direction}
             >
-              <img src={images[index]} />
+              <img alt="" src={images[index]} />
             </CSSTransition>
           </TransitionGroup>
         </div>

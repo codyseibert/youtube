@@ -16,7 +16,8 @@
     "form-data": "^3.0.0",
     "multer": "^1.4.2",
     "node-fetch": "^2.6.0",
-    "node-watch": "^0.6.4"
+    "node-watch": "^0.6.4",
+    "vuex": "^3.5.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"

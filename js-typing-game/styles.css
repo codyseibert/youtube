@@ -1,0 +1,25 @@
+body {
+  text-align: center;
+}
+
+.cursor {
+  background-color: aqua;
+}
+
+.done {
+  color: #bbb;
+}
+
+#typing {
+  margin: 0 auto;
+  width: 300px;
+}
+
+#stats {
+  margin: 0 auto;
+  width: 300px;
+}
+
+.hidden {
+  display: none;
+}
