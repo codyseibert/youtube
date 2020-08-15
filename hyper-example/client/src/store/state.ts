@@ -1,13 +1,10 @@
 import { Page } from "./mutations";
-import { getTodos } from "../services/todos";
 
 export interface Todo {
   id: string;
   text: string;
   checked: boolean;
 }
-
-const credentials = JSON.parse(localStorage.getItem("credentials") || "null");
 
 export interface State {
   username: string;
@@ -25,7 +22,7 @@ export const createInitialState = (): State => ({
   username: null,
   showHeader: true,
   page: Page.Home,
-  todos: getTodos(),
+  todos: [],
   errors: null,
-  credentials,
+  credentials: null,
 });

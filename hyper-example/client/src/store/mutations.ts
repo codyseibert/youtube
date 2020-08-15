@@ -20,11 +20,20 @@ export interface Mutations {
   logout(): void;
   setPage(page: string): void;
   createTodo(text: string): void;
+  setTodos(todos: Array<Todo>): void;
   toggleTodo(todo: Todo): void;
   deleteTodo(todo: Todo): void;
 }
 
-export const createMutations = (state: State, setState): Mutations => ({
+interface createMutationsArgs {
+  getState: () => State;
+  setState: (Object) => void;
+}
+
+export const createMutations = ({
+  getState,
+  setState,
+}: createMutationsArgs): Mutations => ({
   setCredentials: ({ username, password }) => {
     setState({
       credentials: {
@@ -35,11 +44,16 @@ export const createMutations = (state: State, setState): Mutations => ({
   },
   deleteTodo: (todo) => {
     setState({
-      todos: state.todos.filter((t) => t.id !== todo.id),
+      todos: getState().todos.filter((t) => t.id !== todo.id),
+    });
+  },
+  setTodos: (todos) => {
+    setState({
+      todos,
     });
   },
   toggleTodo: (todoToToggle) => {
-    const todos = state.todos;
+    const todos = getState().todos;
     const todo = todos.find((t) => t.id === todoToToggle.id);
     todo.checked = !todo.checked;
     setState({
@@ -47,13 +61,13 @@ export const createMutations = (state: State, setState): Mutations => ({
     });
   },
   createTodo: (text) => {
-    state.todos.push({
+    getState().todos.push({
       id: uuid(),
       text,
       checked: false,
     });
     setState({
-      todos: state.todos,
+      todos: getState().todos,
     });
   },
   logout: () => {

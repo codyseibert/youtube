@@ -8,13 +8,15 @@ export const Login = (context: Context) => {
     const form = new FormData(e.target);
     const username = `${form.get("username")}`;
     const password = `${form.get("password")}`;
+    // TODO: components shouldn't invoke services, actions should
     login({ username, password })
       .then(() => {
-        context.actions.navigateToHome(true);
+        // TODO: mutations should only be called from actions
         context.mutations.setCredentials({
           username,
           password,
         });
+        context.actions.navigateToHome(true);
       })
       .catch(() => {
         context.setState({

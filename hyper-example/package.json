@@ -4,19 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel src/index.html"
+    "start:client": "parcel client/src/index.html",
+    "start:api": "ts-node-dev --project ./server/tsconfig.json server/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.19.2",
     "bootstrap": "^4.5.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "hyperhtml": "^2.33.0",
     "jquery": "^3.5.1",
     "lodash": "^4.17.19",
+    "mongoose": "^5.10.0",
     "navigo": "^7.1.2",
+    "nodemon": "^2.0.4",
     "parcel": "^1.12.4",
     "popper.js": "^1.16.1",
+    "ts-node-dev": "^1.0.0-pre.57",
     "uuid": "^8.3.0"
   },
   "devDependencies": {

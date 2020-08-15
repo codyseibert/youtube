@@ -33,18 +33,22 @@ export interface GotoInterface {
   register(setState: setStateInterface): void;
 }
 
-export const startRouter = (actions: Actions) => {
+interface startRouterArgs {
+  actions: Actions;
+}
+
+export const startRouter = ({ actions }: startRouterArgs) => {
   navigoRouter
     .on({
       "/login": () => {
-        actions.navigateToLogin(false);
+        actions.navigateToLogin();
       },
       "/register": () => {
-        actions.navigateToRegister(false);
+        actions.navigateToRegister();
       },
       "/": () => {
-        actions.verifyLoggedIn();
-        actions.navigateToHome(false);
+        if (!actions.verifyLoggedIn()) return;
+        actions.navigateToHome();
       },
     })
     .resolve();

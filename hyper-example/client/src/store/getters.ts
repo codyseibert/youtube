@@ -4,8 +4,13 @@ export interface Getters {
   isLoggedIn(): boolean;
 }
 
-export const createGetters = (state: State) => ({
+interface createGettersArgs {
+  getState: () => State;
+}
+
+export const createGetters = ({ getState }: createGettersArgs) => ({
   isLoggedIn: () => {
+    const state = getState();
     return (
       state.credentials &&
       !!state.credentials.username &&

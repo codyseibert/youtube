@@ -1,9 +1,5 @@
 import { cloneDeep } from "lodash";
-import { createActions } from "./actions";
-import { createGetters } from "./getters";
-import { createMutations } from "./mutations";
 import { createInitialState } from "./state";
-import { Navigate } from "../router";
 
 const deepFreeze = (obj) => {
   Object.keys(obj).forEach((prop) => {
@@ -13,33 +9,21 @@ const deepFreeze = (obj) => {
   return Object.freeze(obj);
 };
 
-export const createStore = (render, navigate: Navigate) => {
+export const createStore = ({ onStateUpdated }) => {
   const state = createInitialState();
 
   const getState = () => deepFreeze(cloneDeep(state));
 
   const setState = (newState) => {
     Object.assign(state, newState);
-    render({
+    onStateUpdated({
       setState,
       getState,
-      getters,
-      actions,
-      mutations,
     });
   };
-
-  const getters = createGetters(state);
-  const mutations = createMutations(state, setState);
-  const actions = createActions(mutations, state, getters, navigate);
-
-  setState(state);
 
   return {
     setState,
     getState,
-    mutations,
-    getters,
-    actions,
   };
 };
