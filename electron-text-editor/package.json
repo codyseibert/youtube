@@ -1,0 +1,27 @@
+{
+  "name": "electron-text-editor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "your.id",
+    "mac": {
+      "category": "your.app.category.type"
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron-builder": "^22.8.0",
+    "electron": "^10.1.1"
+  },
+  "dependencies": {
+    "electron-reload": "^1.5.0"
+  }
+}

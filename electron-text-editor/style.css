@@ -1,0 +1,11 @@
+body {
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+textarea {
+  height: 400px;
+  width: 400px;
+  display: none;
+}
