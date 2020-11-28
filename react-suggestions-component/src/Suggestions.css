@@ -1,0 +1,46 @@
+section {
+  margin-top: 50px;
+}
+
+input {
+  padding: 4px;
+  width: 300px;
+  font-size: 20px;
+}
+
+button {
+  padding: 4px;
+  font-size: 20px;
+}
+
+.wrapper {
+  display: inline-block;
+  text-align: left;
+}
+
+.results {
+  width: 400px;
+  max-height: 300px;
+  overflow-y: auto;
+  position: absolute;
+  box-shadow: 1px 1px 5px #666;
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.result {
+  padding: 0px;
+  margin: 0px;
+  cursor: pointer;
+  padding: 0px;
+  margin: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: 500;
+  padding-left: 20px;
+}
+
+.result:hover {
+  background-color: #eee;
+}
