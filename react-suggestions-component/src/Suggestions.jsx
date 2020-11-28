@@ -14,7 +14,7 @@ const Suggestions = () => {
     if (!term) {
       clearSuggestions();
     } else {
-      const suggestions = await getSuggestions(searchTerm);
+      const suggestions = await getSuggestions(term);
       setSuggestions(suggestions);
     }
   };
