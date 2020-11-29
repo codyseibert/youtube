@@ -1,13 +1,4 @@
-section {
-  margin-top: 50px;
-}
-
-input {
-  padding: 4px;
-  width: 300px;
-  font-size: 20px;
-}
-
+input,
 button {
   padding: 4px;
   font-size: 20px;
@@ -15,32 +6,26 @@ button {
 
 .wrapper {
   display: inline-block;
-  text-align: left;
 }
 
-.results {
-  width: 400px;
-  max-height: 300px;
-  overflow-y: auto;
+.suggestions {
+  width: 300px;
+  max-height: 200px;
   position: absolute;
-  box-shadow: 1px 1px 5px #666;
-  border-radius: 10px;
+  box-shadow: 3px 3px 5px #999;
+  background-color: white;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
-.result {
-  padding: 0px;
-  margin: 0px;
+.suggestion {
+  text-align: left;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 10px;
   cursor: pointer;
-  padding: 0px;
-  margin: 0px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-weight: 500;
-  padding-left: 20px;
 }
 
-.result:hover {
+.suggestion:hover {
   background-color: #eee;
 }

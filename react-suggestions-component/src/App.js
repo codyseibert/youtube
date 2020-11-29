@@ -1,10 +1,10 @@
 import "./App.css";
-import Suggestions from "./Suggestions";
+import { Suggestions } from "./Suggestions";
 
 function App() {
   return (
     <div className="App">
-      <Suggestions />
+      <Suggestions onSearch={(term) => console.log(term)} />
     </div>
   );
 }
