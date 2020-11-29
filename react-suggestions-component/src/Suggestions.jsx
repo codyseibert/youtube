@@ -6,7 +6,9 @@ const Suggestions = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const clearSuggestions = () => setSuggestions([]);
+  const clearSuggestions = () => {
+    setSuggestions([]);
+  };
 
   const onSearchInputChange = async (e) => {
     const term = e.target.value;
@@ -30,7 +32,6 @@ const Suggestions = () => {
     <section>
       <div className="wrapper">
         <input
-          onBlur={clearSuggestions}
           value={searchTerm}
           onChange={onSearchInputChange}
           onClick={() =>
@@ -44,7 +45,9 @@ const Suggestions = () => {
           <div className="results">
             {suggestions.map((suggestion) => (
               <div
-                onClick={() => onSuggestionClick(suggestion)}
+                onClick={() => {
+                  onSuggestionClick(suggestion);
+                }}
                 className="result"
                 key={suggestion.name}
               >
