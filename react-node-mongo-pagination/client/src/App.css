@@ -38,16 +38,11 @@
 }
 
 .post {
-  padding: 10px;
-  max-width: 400px;
-  max-height: 200px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  margin: 0 auto;
-  margin-bottom: 20px;
   background-color: white;
-}
-
-button {
-  margin-right: 10px;
-  cursor: pointer;
+  width: 200px;
+  height: 100px;
+  padding: 10px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px 0 #999;
 }

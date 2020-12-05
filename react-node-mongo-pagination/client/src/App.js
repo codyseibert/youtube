@@ -1,54 +1,48 @@
-import { useEffect, useState } from "react";
 import "./App.css";
-
-const BASE_URL = "http://localhost:4000";
+import { useEffect, useState } from "react";
 
 function App() {
-  const [page, setPage] = useState(0);
+  const [pageNumber, setPageNumber] = useState(0);
+  const [numberOfPages, setNumberOfPages] = useState(0);
   const [posts, setPosts] = useState([]);
-  const [totalPages, setTotalPages] = useState(0);
+
+  const pages = new Array(numberOfPages).fill(null).map((v, i) => i);
 
   useEffect(() => {
-    fetch(`${BASE_URL}/posts?page=${page}`)
+    fetch(`http://localhost:4000/posts?page=${pageNumber}`)
       .then((response) => response.json())
-      .then(({ posts, pages }) => {
-        setTotalPages(pages);
+      .then(({ totalPages, posts }) => {
         setPosts(posts);
+        setNumberOfPages(totalPages);
       });
-  }, [page]);
+  }, [pageNumber]);
 
-  const previousPage = () => {
-    setPage(Math.max(0, page - 1));
+  const gotoPrevious = () => {
+    setPageNumber(Math.max(0, pageNumber - 1));
   };
 
-  const nextPage = () => {
-    setPage(Math.min(totalPages - 1, page + 1));
+  const gotoNext = () => {
+    setPageNumber(Math.min(numberOfPages - 1, pageNumber + 1));
   };
-
-  const pageNumbers = new Array(totalPages).fill(null).map((v, i) => i);
-
-  const getPageDisplayNumber = (page) => page + 1;
 
   return (
     <div className="App">
-      <h1>Page {getPageDisplayNumber(page)}</h1>
+      <h3>Page of {pageNumber + 1}</h3>
 
       {posts.map((post) => (
-        <div className="post" key={post._id}>
+        <div key={post._id} className="post">
           <h4>{post.title}</h4>
           <p>{post.text}</p>
         </div>
       ))}
 
-      <button onClick={previousPage}>Previous</button>
-
-      {pageNumbers.map((pageNumber) => (
-        <button onClick={() => setPage(pageNumber)}>
-          {getPageDisplayNumber(pageNumber)}
+      <button onClick={gotoPrevious}>Previous</button>
+      {pages.map((pageIndex) => (
+        <button key={pageIndex} onClick={() => setPageNumber(pageIndex)}>
+          {pageIndex + 1}
         </button>
       ))}
-
-      <button onClick={nextPage}>Next</button>
+      <button onClick={gotoNext}>Next</button>
     </div>
   );
 }
