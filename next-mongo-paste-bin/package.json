@@ -1,0 +1,21 @@
+{
+  "name": "next-mongo-paste-bin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "mongoose": "^5.11.7",
+    "next": "10.0.3",
+    "node-uuid": "^1.4.8",
+    "randomstring": "^1.1.5",
+    "react": "17.0.1",
+    "react-bootstrap": "^1.4.0",
+    "react-dom": "17.0.1",
+    "uuid": "^8.3.2"
+  }
+}
