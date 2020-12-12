@@ -1,23 +1,36 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Nav, Navbar } from "react-bootstrap";
 import "../styles/globals.css";
+import {
+  Container,
+  Button,
+  Navbar,
+  Nav,
+  Row,
+  Col,
+} from "react-bootstrap";
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Navbar className="mb-4" bg="dark" variant="dark">
-        <Navbar.Brand href="#home">
-          Paste Bucket
-        </Navbar.Brand>
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand href="/">Paste Bucket</Navbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link href="/">Home</Nav.Link>
-          <Button href="/create" variant="primary">
-            + Create Snippet
+          <Button
+            href="/create-snippet"
+            variant="outline-info"
+          >
+            Create a Snippet
           </Button>
         </Nav>
       </Navbar>
-
-      <Component {...pageProps} />
+      <Container>
+        <Row>
+          <Col>
+            <Component {...pageProps} />
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 }

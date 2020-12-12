@@ -1,64 +1,53 @@
-import Head from "next/head";
-import {
-  Button,
-  Col,
-  Container,
-  Form,
-  Row,
-} from "react-bootstrap";
+import React from "react";
+import { Form, Button } from "react-bootstrap";
 import { Snippet } from "../models/Snippet";
-import * as copy from "clipboard-copy";
+import { connect } from "../utils/db";
+import copy from "clipboard-copy";
 
-export default function Slug({ snippet, slug }) {
+export default function CreateSnippet({ snippetText }) {
   return (
-    <div>
-      <Head>
-        <title>Snippet {snippet}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div className="text-center mt-4">
+      <h1>Snippet</h1>
 
-      <main>
-        <Container>
-          <Row>
-            <Col>
-              <Row className="mb-4">
-                <Col>
-                  <h1>Snippet "{slug}"</h1>
-                </Col>
-                <Col className="text-right">
-                  <Button
-                    onClick={() => copy(window.location)}
-                    variant="secondary"
-                  >
-                    Copy Link for Sharing
-                  </Button>
-                </Col>
-              </Row>
-              <Form>
-                <Form.Group controlId="exampleForm.ControlTextarea1">
-                  <Form.Control
-                    disabled
-                    value={snippet}
-                    style={{ height: "400px" }}
-                    as="textarea"
-                    rows={3}
-                  />
-                </Form.Group>
-              </Form>
-            </Col>
-          </Row>
-        </Container>
-      </main>
+      <Button
+        onClick={() => copy(window.location)}
+        className="mb-4 mt-2"
+        variant="outline-info"
+      >
+        Copy Link to Clipboard
+      </Button>
+
+      <Form>
+        <Form.Group controlId="exampleForm.ControlTextarea1">
+          <Form.Control
+            style={{
+              margin: "0 auto",
+              width: "400px",
+              height: "300px",
+            }}
+            disabled
+            value={snippetText}
+            as="textarea"
+            rows={3}
+          />
+        </Form.Group>
+      </Form>
     </div>
   );
 }
 
 export async function getServerSideProps(context) {
+  await connect();
+
   const slug = context.params.slug;
-  const snippet = await Snippet.findOne({
+
+  const snippetObject = await Snippet.findOne({
     slug,
   });
+
   return {
-    props: { snippet: snippet.snippet, slug },
+    props: {
+      snippetText: snippetObject.snippet,
+    },
   };
 }

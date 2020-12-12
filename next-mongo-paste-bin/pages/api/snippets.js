@@ -1,9 +1,9 @@
-import { connect } from "../../util/db";
+import { connect } from "../../utils/db";
 import { Snippet } from "../../models/Snippet";
-const randomstring = require("randomstring");
+import * as randomstring from "randomstring";
 
 export default async (req, res) => {
-  const db = await connect();
+  await connect();
 
   if (req.method === "POST") {
     const slug = randomstring.generate({
@@ -11,12 +11,15 @@ export default async (req, res) => {
       charset: "alphabetic",
     });
     const snippet = await Snippet.create({
-      ...req.body,
+      snippet: req.body.snippet,
       slug,
     });
+
     res.statusCode = 200;
     res.json(snippet);
   } else {
-    throw new Error("route undefined");
+    throw new Error(
+      "http method not supported on this endpoint"
+    );
   }
 };
