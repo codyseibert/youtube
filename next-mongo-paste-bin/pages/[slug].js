@@ -1,8 +1,15 @@
 import Head from "next/head";
-import { Col, Container, Form, Row } from "react-bootstrap";
+import {
+  Button,
+  Col,
+  Container,
+  Form,
+  Row,
+} from "react-bootstrap";
 import { Snippet } from "../models/Snippet";
+import * as copy from "clipboard-copy";
 
-export default function Slug({ snippet }) {
+export default function Slug({ snippet, slug }) {
   return (
     <div>
       <Head>
@@ -14,9 +21,21 @@ export default function Slug({ snippet }) {
         <Container>
           <Row>
             <Col>
+              <Row className="mb-4">
+                <Col>
+                  <h1>Snippet "{slug}"</h1>
+                </Col>
+                <Col className="text-right">
+                  <Button
+                    onClick={() => copy(window.location)}
+                    variant="secondary"
+                  >
+                    Copy Link for Sharing
+                  </Button>
+                </Col>
+              </Row>
               <Form>
                 <Form.Group controlId="exampleForm.ControlTextarea1">
-                  <Form.Label>New Snippet</Form.Label>
                   <Form.Control
                     disabled
                     value={snippet}
@@ -40,6 +59,6 @@ export async function getServerSideProps(context) {
     slug,
   });
   return {
-    props: { snippet: snippet.snippet },
+    props: { snippet: snippet.snippet, slug },
   };
 }
