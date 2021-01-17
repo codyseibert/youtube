@@ -1,0 +1,17 @@
+{
+  "name": "relate-pricing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "livereload": "npx livereload .",
+    "start": "npx http-server .",
+    "build:tailwind": "npx tailwindcss-cli@latest build -o tailwind.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tslint-lines-between-class-members": "^1.3.6"
+  }
+}
