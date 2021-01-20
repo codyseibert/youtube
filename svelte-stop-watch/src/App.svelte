@@ -1,95 +1,90 @@
 <script lang="ts">
-  let startTime: number = Date.now();
-  let elapsedTime: number = 0;
-  let interval: number = null;
-  let lastElapsed: number = 0;
-
   enum STATE {
-    PAUSED,
     NEW,
     RUNNING,
+    PAUSED,
   }
 
   let state: STATE = STATE.NEW;
+  let startTime: number = 0;
+  let elaspedTime: number = 0;
+  let oldElapsedTime: number = 0;
+  let interval: number;
 
   const pad2 = (number: number) => `00${number}`.slice(-2);
   const pad3 = (number: number) => `000${number}`.slice(-3);
 
-  $: hours = pad2(Math.floor(elapsedTime / 3600 / 1000) % 60);
-  $: minutes = pad2(Math.floor(elapsedTime / 60 / 1000) % 60);
-  $: seconds = pad2(Math.floor(elapsedTime / 1000) % 60);
-  $: millis = pad3(Math.floor(elapsedTime % 1000));
-  $: time = `${hours}:${minutes}:${seconds}.${millis}`;
+  $: hours = pad2(Math.floor(elaspedTime / 1000 / 60 / 60) % 60);
+  $: minutes = pad2(Math.floor(elaspedTime / 1000 / 60) % 60);
+  $: seconds = pad2(Math.floor(elaspedTime / 1000) % 60);
+  $: millis = pad3(elaspedTime % 1000);
+  $: formattedElaspedTime = `${hours}:${minutes}:${seconds}.${millis}`;
 
   const start = () => {
     startTime = Date.now();
     state = STATE.RUNNING;
-
     interval = setInterval(() => {
       if (state === STATE.RUNNING) {
-        const nowTime = Date.now();
-        const delta = nowTime - startTime;
-        elapsedTime = delta + lastElapsed;
+        const endTime = Date.now();
+        elaspedTime = endTime - startTime + oldElapsedTime;
       }
     });
   };
 
+  const reset = () => {
+    elaspedTime = 0;
+    state = STATE.NEW;
+    clearInterval(interval);
+  };
+
   const pause = () => {
     state = STATE.PAUSED;
-    lastElapsed = elapsedTime;
+    oldElapsedTime = elaspedTime;
   };
 
   const resume = () => {
-    state = STATE.RUNNING;
     startTime = Date.now();
-  };
-
-  const reset = () => {
-    clearInterval(interval);
-    state = STATE.NEW;
-    elapsedTime = 0;
-    lastElapsed = 0;
+    state = STATE.RUNNING;
   };
 </script>
 
 <div
-  class="bg-gradient-to-br from-green-400 to-blue-500 flex flex-col justify-center items-center h-screen"
+  class="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-blue-500 to-green-400"
 >
-  <div class="w-3/4 glass p-10">
-    <h1 class="text-green-200 border-b border-white text-4xl mb-4">
+  <div class="glass w-1/3 h-36 p-4">
+    <h1 class="mb-2 text-2xl text-yellow-100 border-b border-white">
       Super Stop Watch
     </h1>
-    <div class="text-white text-left mb-4 text-xl">
-      <h1>Elapsed Time: {time}</h1>
-    </div>
+
+    <p class="mb-2 text-xl text-white">Elapsed Time: {formattedElaspedTime}</p>
+
     <div class="text-right">
       {#if state === STATE.NEW}
         <button
-          class="border-green-100 text-green-100 mr-2 p-1 px-2 border rounded"
-          on:click={start}>Start</button
+          on:click={start}
+          class="mr-2 text-xl px-2 border-green-200 border rounded text-green-200"
+          >Start</button
         >
       {/if}
-
-      {#if state === STATE.PAUSED || state === STATE.RUNNING}
+      {#if state === STATE.RUNNING || state === STATE.PAUSED}
         <button
           on:click={reset}
-          class="text-red-700 border-red-700 mr-2 p-1 px-2 border rounded"
+          class="mr-2 text-xl px-2 border-red-500 border rounded text-red-500"
           >Reset</button
         >
       {/if}
-
-      {#if state === STATE.PAUSED}
-        <button
-          on:click={resume}
-          class="text-yellow mr-2 p-1 px-2 border border-gray-800 rounded"
-          >Resume</button
-        >
-      {/if}
-
       {#if state === STATE.RUNNING}
         <button
           on:click={pause}
-          class="mr-2 p-1 px-2 border border-black rounded">Pause</button
+          class="mr-2 text-xl px-2 border-white border rounded text-white"
+          >Pause</button
+        >
+      {/if}
+      {#if state === STATE.PAUSED}
+        <button
+          on:click={resume}
+          class="text-xl px-2 border-black border rounded text-black"
+          >Resume</button
         >
       {/if}
     </div>
