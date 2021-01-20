@@ -2,6 +2,7 @@
   let startTime: number = Date.now();
   let elapsedTime: number = 0;
   let interval: number = null;
+  let lastElapsed: number = 0;
 
   enum STATE {
     PAUSED,
@@ -27,30 +28,34 @@
     interval = setInterval(() => {
       if (state === STATE.RUNNING) {
         const nowTime = Date.now();
-        elapsedTime = nowTime - startTime;
+        const delta = nowTime - startTime;
+        elapsedTime = delta + lastElapsed;
       }
     });
   };
 
   const pause = () => {
     state = STATE.PAUSED;
+    lastElapsed = elapsedTime;
   };
 
   const resume = () => {
     state = STATE.RUNNING;
+    startTime = Date.now();
   };
 
   const reset = () => {
     clearInterval(interval);
     state = STATE.NEW;
     elapsedTime = 0;
+    lastElapsed = 0;
   };
 </script>
 
 <div
   class="bg-gradient-to-br from-green-400 to-blue-500 flex flex-col justify-center items-center h-screen"
 >
-  <div class="w-2/3 glass p-10">
+  <div class="w-3/4 glass p-10">
     <h1 class="text-green-200 border-b border-white text-4xl mb-4">
       Super Stop Watch
     </h1>
