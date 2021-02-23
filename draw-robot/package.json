@@ -1,0 +1,25 @@
+{
+  "name": "draw-robot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@andreekeberg/imagedata": "^1.0.2",
+    "adaptive-bezier-curve": "^1.0.3",
+    "adaptive-quadratic-curve": "^1.0.2",
+    "canny-edge-detector": "^1.0.0",
+    "cheerio": "^1.0.0-rc.5",
+    "image-js": "^0.31.4",
+    "image-outline": "^0.1.0",
+    "imagetracerjs": "^1.2.6",
+    "potrace": "^2.1.8",
+    "robotjs": "^0.6.0",
+    "svg-pathdata": "^5.0.5"
+  }
+}
