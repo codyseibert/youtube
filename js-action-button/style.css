@@ -1,0 +1,62 @@
+body {
+  font-family: sans-serif;
+  padding: 50px;
+}
+
+.action-menu {
+  width: 180px;
+  position: relative;
+}
+
+.action-menu .action-menu__button {
+  padding: 10px;
+  background: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  width: 180px;
+  font-size: 16px;
+}
+
+.action-menu .action-menu__button:focus {
+  background: #006ce0;
+}
+
+.action-menu .fa {
+  margin-left: 6px;
+  margin-top: 2px;
+  position: absolute;
+}
+
+.action-dropdown {
+  background: white;
+  border: 1px solid #999;
+  border-radius: 4px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  position: absolute;
+  z-index: 1;
+  overflow: hidden;
+  animation-timing-function: linear;
+  width: 100%;
+  transition: all 0.25s;
+  max-height: 100px;
+}
+
+.action-dropdown.hide {
+  max-height: 0;
+  opacity: 0%;
+  /* border: 0px; */
+}
+
+.action-dropdown a {
+  display: block;
+  padding: 6px 14px;
+  text-decoration: none;
+  color: #333;
+}
+
+.action-dropdown a:hover {
+  background: #eeeeee;
+}
