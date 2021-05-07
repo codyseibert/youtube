@@ -1,0 +1,10 @@
+.my-header {
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  padding: 10px;
+}
+
+.my-header-link {
+  margin-right: 10px;
+}

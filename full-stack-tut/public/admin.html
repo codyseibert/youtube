@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <title>Learning about CSS</title>
+
+    <link rel="stylesheet" href="./styles/global.css" />
+    <link rel="stylesheet" href="./styles/header.css" />
+
+    <style>
+      .admin {
+        padding: 20px;
+      }
+
+      .admin label {
+        display: block;
+        font-size: 18px;
+      }
+
+      .admin input {
+        display: block;
+        margin-bottom: 20px;
+        padding: 4px;
+      }
+
+      .admin textarea {
+        display: block;
+        margin-bottom: 20px;
+        padding: 4px;
+        width: 100%;
+        height: 400px;
+      }
+    </style>
+
+    <script defer src="./js/header.js"></script>
+    <script defer src="./js/admin.js"></script>
+  </head>
+
+  <body>
+    <div id="header"></div>
+
+    <section class="admin">
+      <form id="form">
+        <label>Title</label>
+        <input name="title"></input>
+
+        <label>Description</label>
+        <input name="description"></input>
+
+        <label>Content</label>
+        <textarea name="content"></textarea>
+
+        <label>Image</label>
+        <input name="image"></input>
+
+        <button type="submit">Save Post</button>
+      </form>
+    </section>
+  </body>
+</html>
