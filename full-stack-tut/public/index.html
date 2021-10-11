@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>Learning about CSS</title>
+
+    <link rel="stylesheet" href="./styles/global.css" />
+    <link rel="stylesheet" href="./styles/header.css" />
+
+    <style>
+      .preview-section {
+        padding: 20px;
+      }
+
+      .preview {
+        display: flex;
+        align-items: center;
+        margin-bottom: 40px;
+      }
+
+      .preview > * {
+        flex-grow: 1;
+      }
+
+      .preview-image {
+        max-width: 200px;
+      }
+    </style>
+
+    <script defer src="./js/header.js"></script>
+    <script defer src="./js/index.js"></script>
+  </head>
+
+  <body>
+    <div id="header"></div>
+    <section id="previews" class="preview-section"></section>
+  </body>
+</html>

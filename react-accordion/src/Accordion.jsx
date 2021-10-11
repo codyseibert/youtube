@@ -1,28 +1,26 @@
-import './Accordion.css';
-import React, { useState } from 'react';
+import "./Accordion.css";
+import React from "react";
 
-export default function Accordion({ image, title, body }) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function Accordion({
+  setAccordionOpened,
+  accordionOpened,
+  image,
+  title,
+  body,
+}) {
+  const isOpened = title === accordionOpened;
 
   return (
     <div className="accordion">
       <div
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => setAccordionOpened(title)}
         className="accordion-header"
       >
-        <img
-          alt="cookie"
-          className="accordion-image"
-          src={image}
-        />
+        <img alt="cookie" className="accordion-image" src={image} />
         <h2>{title}</h2>
-        <div className="accordion-indicator">
-          {isOpen ? '-' : '+'}
-        </div>
+        <div className="accordion-indicator">{isOpened ? "-" : "+"}</div>
       </div>
-      {isOpen && (
-        <div className="accordion-body">{body}</div>
-      )}
+      {isOpened && <div className="accordion-body">{body}</div>}
     </div>
   );
 }
