@@ -5,6 +5,7 @@ from matplotlib import pyplot as plt
 import cv2
 
 path = "thumbnail-downloader/thumbnails"
+# path = "data/1"
 files = os.listdir(path)
 remaining = len(files)
 for imgPath in files:

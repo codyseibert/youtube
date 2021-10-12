@@ -2,4 +2,4 @@
 .vscode
 thumbnail-downloader/thumbnails/
 data/
-model/
+models/
