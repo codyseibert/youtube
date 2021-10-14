@@ -4,3 +4,5 @@ thumbnail-downloader/thumbnails/
 data/
 data2/
 models/
+X.pickle
+y.pickle
