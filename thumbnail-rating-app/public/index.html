@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <img id="image" />
+    <button id="upvote">Up Vote</button>
+    <button id="downvote">Down Vote</button>
+
+    <script>
+      let currentThumbnailId;
+
+      async function fetchRandomImage() {
+        const response = await fetch("thumbnails/random");
+        currentThumbnailId = await response.text();
+        document.getElementById(
+          "image"
+        ).src = `./images/backlog/${currentThumbnailId}`;
+      }
+
+      fetchRandomImage();
+
+      document.getElementById("upvote").addEventListener("click", async () => {
+        await fetch(`./thumbnails/${currentThumbnailId}/votes`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            isGood: true,
+          }),
+        });
+        await fetchRandomImage();
+      });
+
+      document
+        .getElementById("downvote")
+        .addEventListener("click", async () => {
+          await fetch(`./thumbnails/${currentThumbnailId}/votes`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              isGood: false,
+            }),
+          });
+          await fetchRandomImage();
+        });
+    </script>
+  </body>
+</html>

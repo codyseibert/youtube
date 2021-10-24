@@ -5,8 +5,8 @@ interface thumbnailMoverArgs {
 }
 
 export const thumbnailMover = async (options: thumbnailMoverArgs) => {
-  const sourceImageLocation = `./images/backlog/${options.imageId}`;
+  const sourceImageLocation = `./public/images/backlog/${options.imageId}`;
   const rating = options.isGood ? "good" : "bad";
-  const destinationLocation = `./images/${rating}/${options.imageId}`;
+  const destinationLocation = `./public/images/${rating}/${options.imageId}`;
   await options.fileMover(sourceImageLocation, destinationLocation);
 };

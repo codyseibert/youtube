@@ -6,6 +6,7 @@ import { fileMover } from "./fileMover";
 import { getRandomImage } from "./getRandomImage";
 import { getImagesInDirectory } from "./getImagesInDirectory";
 
+app.use(express.static("public"));
 app.use(express.json());
 
 app.post("/thumbnails/:id/votes", async (req: Request, res: Response) => {
