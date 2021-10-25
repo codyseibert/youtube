@@ -3,18 +3,18 @@ import fs from "fs";
 
 describe("GET@/thumbnails/random", () => {
   beforeEach(() => {
-    fs.writeFileSync("./images/backlog/a.png", "hello world");
-    fs.writeFileSync("./images/backlog/b.png", "hello world");
-    fs.writeFileSync("./images/backlog/c.png", "hello world");
+    fs.writeFileSync("./public/images/backlog/a.png", "hello world");
+    fs.writeFileSync("./public/images/backlog/b.png", "hello world");
+    fs.writeFileSync("./public/images/backlog/c.png", "hello world");
   });
 
   afterEach(() => {
-    fs.existsSync("./images/backlog/a.png") &&
-      fs.unlinkSync("./images/backlog/a.png");
-    fs.existsSync("./images/backlog/b.png") &&
-      fs.unlinkSync("./images/backlog/b.png");
-    fs.existsSync("./images/backlog/c.png") &&
-      fs.unlinkSync("./images/backlog/c.png");
+    fs.existsSync("./public/images/backlog/a.png") &&
+      fs.unlinkSync("./public/images/backlog/a.png");
+    fs.existsSync("./public/images/backlog/b.png") &&
+      fs.unlinkSync("./public/images/backlog/b.png");
+    fs.existsSync("./public/images/backlog/c.png") &&
+      fs.unlinkSync("./public/images/backlog/c.png");
   });
 
   it("verify a random image id is returned", async () => {

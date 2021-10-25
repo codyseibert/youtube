@@ -7,8 +7,8 @@ describe("thumbnailMover", () => {
     const fileMover = jest.fn();
     await thumbnailMover({ fileMover, imageId, isGood });
     expect(fileMover).toBeCalledWith(
-      `./images/backlog/${imageId}`,
-      `./images/good/${imageId}`
+      `./public/images/backlog/${imageId}`,
+      `./public/images/good/${imageId}`
     );
   });
 
@@ -18,8 +18,8 @@ describe("thumbnailMover", () => {
     const fileMover = jest.fn();
     await thumbnailMover({ fileMover, imageId, isGood });
     expect(fileMover).toBeCalledWith(
-      `./images/backlog/${imageId}`,
-      `./images/bad/${imageId}`
+      `./public/images/backlog/${imageId}`,
+      `./public/images/bad/${imageId}`
     );
   });
 });

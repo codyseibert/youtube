@@ -1,6 +1,6 @@
 const getLastUrlPath = (url) => url.split("/").pop();
 
-describe("a user navigates to the application", () => {
+describe("a user rates the last two thumbnails in the backlog", () => {
   before(() => {
     cy.exec("cp ./cypress/fixtures/good.png ./public/images/backlog/good.png");
     cy.exec("cp ./cypress/fixtures/bad.png ./public/images/backlog/bad.png");
@@ -19,7 +19,7 @@ describe("a user navigates to the application", () => {
     cy.exec("rm -rf ./public/images/bad/bad.png", { failOnNonZeroExit: false });
   });
 
-  it("display an thumbnail and two buttons the user can use to vote on the thumbnail", function () {
+  it("user can see the thumbnail on the page and vote on it via buttons", function () {
     cy.visit("http://localhost:8080/");
     cy.get("#image")
       .should("have.attr", "src")
@@ -29,7 +29,7 @@ describe("a user navigates to the application", () => {
     cy.get("#downvote").should("exist");
   });
 
-  it("moves the upvoted thumbnail to the good directory when upvote is clicked", function () {
+  it("user can upvote on the thumbnail which moves it to the good directory", function () {
     cy.get("#upvote").click();
     cy.wait(1000);
     cy.exec(
@@ -42,7 +42,7 @@ describe("a user navigates to the application", () => {
     );
   });
 
-  it("changes the image with a new id for the user to rate", function () {
+  it("user sees a new thumbnail on the screen", function () {
     cy.get("#image")
       .should("have.attr", "src")
       .as("secondThumbnailId")
@@ -51,7 +51,7 @@ describe("a user navigates to the application", () => {
       });
   });
 
-  it("moves the downvoted thumbnail to the bad directory when downvote is clicked", function () {
+  it("user downvotes the thumbnail which moves it to the bad directory", function () {
     cy.get("#downvote").click();
     cy.wait(1000);
     cy.exec(
@@ -64,7 +64,7 @@ describe("a user navigates to the application", () => {
     );
   });
 
-  it("sets the image src as undefined since no more backlog images exist", function () {
+  it("user no longer sees any thumbnail since the backlog is empty", function () {
     cy.get("#image")
       .should("have.attr", "src")
       .then((finalThumbnailId) => {

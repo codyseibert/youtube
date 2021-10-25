@@ -3,16 +3,16 @@ import fs from "fs";
 
 describe("POST@/thumbnails/:id/votes", () => {
   beforeEach(() => {
-    fs.writeFileSync("./images/backlog/testing.png", "hello world");
+    fs.writeFileSync("./public/images/backlog/testing.png", "hello world");
   });
 
   afterEach(() => {
-    fs.existsSync("./images/backlog/testing.png") &&
-      fs.unlinkSync("./images/backlog/testing.png");
-    fs.existsSync("./images/bad/testing.png") &&
-      fs.unlinkSync("./images/bad/testing.png");
-    fs.existsSync("./images/good/testing.png") &&
-      fs.unlinkSync("./images/good/testing.png");
+    fs.existsSync("./public/images/backlog/testing.png") &&
+      fs.unlinkSync("./public/images/backlog/testing.png");
+    fs.existsSync("./public/images/bad/testing.png") &&
+      fs.unlinkSync("./public/images/bad/testing.png");
+    fs.existsSync("./public/images/good/testing.png") &&
+      fs.unlinkSync("./public/images/good/testing.png");
   });
 
   it("when approving a thumbnail, it should move a thumbnail from the backlog directory to the good directory", async () => {
@@ -23,9 +23,9 @@ describe("POST@/thumbnails/:id/votes", () => {
         isGood: true,
       }
     );
-    const doesGoodFileExist = fs.existsSync(`./images/good/${imageId}`);
+    const doesGoodFileExist = fs.existsSync(`./public/images/good/${imageId}`);
     const wasFileRemovedFromBacklog = fs.existsSync(
-      `./images/backlog/${imageId}`
+      `./public/images/backlog/${imageId}`
     );
     expect(doesGoodFileExist).toBeTruthy();
     expect(wasFileRemovedFromBacklog).toBeFalsy();
@@ -40,9 +40,9 @@ describe("POST@/thumbnails/:id/votes", () => {
         isGood: false,
       }
     );
-    const doesBadFileExist = fs.existsSync(`./images/bad/${imageId}`);
+    const doesBadFileExist = fs.existsSync(`./public/images/bad/${imageId}`);
     const wasFileRemovedFromBacklog = fs.existsSync(
-      `./images/backlog/${imageId}`
+      `./public/images/backlog/${imageId}`
     );
     expect(doesBadFileExist).toBeTruthy();
     expect(wasFileRemovedFromBacklog).toBeFalsy();
