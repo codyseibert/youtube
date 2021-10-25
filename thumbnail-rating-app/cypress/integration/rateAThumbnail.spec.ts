@@ -16,7 +16,13 @@ describe("a user rates the last two thumbnails in the backlog", () => {
     cy.exec("rm -rf ./public/images/good/good.png", {
       failOnNonZeroExit: false,
     });
+    cy.exec("rm -rf ./public/images/good/bad.png", {
+      failOnNonZeroExit: false,
+    });
     cy.exec("rm -rf ./public/images/bad/bad.png", { failOnNonZeroExit: false });
+    cy.exec("rm -rf ./public/images/bad/good.png", {
+      failOnNonZeroExit: false,
+    });
   });
 
   it("user can see the thumbnail on the page and vote on it via buttons", function () {

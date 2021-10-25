@@ -4,52 +4,46 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Thumbnail Voting App</title>
   </head>
   <body>
     <img id="image" />
-    <button id="upvote">Up Vote</button>
-    <button id="downvote">Down Vote</button>
+    <button id="upvote">up vote</button>
+    <button id="downvote">down vote</button>
 
     <script>
-      let currentThumbnailId;
+      let randomThumbnailId;
 
-      async function fetchRandomImage() {
-        const response = await fetch("thumbnails/random");
-        currentThumbnailId = await response.text();
+      const displayRandomThumbnail = async () => {
+        const response = await fetch("/thumbnails/random");
+        randomThumbnailId = await response.text();
         document.getElementById(
           "image"
-        ).src = `./images/backlog/${currentThumbnailId}`;
-      }
+        ).src = `/images/backlog/${randomThumbnailId}`;
+      };
+      displayRandomThumbnail();
 
-      fetchRandomImage();
-
-      document.getElementById("upvote").addEventListener("click", async () => {
-        await fetch(`./thumbnails/${currentThumbnailId}/votes`, {
+      const voteOnThumbnail = async (isGood) => {
+        await fetch(`/thumbnails/${randomThumbnailId}/votes`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            isGood: true,
+            isGood,
           }),
         });
-        await fetchRandomImage();
+        await displayRandomThumbnail();
+      };
+
+      document.getElementById("upvote").addEventListener("click", async () => {
+        await voteOnThumbnail(true);
       });
 
       document
         .getElementById("downvote")
         .addEventListener("click", async () => {
-          await fetch(`./thumbnails/${currentThumbnailId}/votes`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              isGood: false,
-            }),
-          });
-          await fetchRandomImage();
+          await voteOnThumbnail(false);
         });
     </script>
   </body>
