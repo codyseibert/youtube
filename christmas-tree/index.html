@@ -4,17 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Christmas Tree</title>
 
     <style>
       img {
         position: absolute;
-      }
-
-      .wrapper {
-        position: relative;
-        width: 300px;
-        height: 400px;
       }
 
       .hide {
@@ -23,42 +17,35 @@
     </style>
   </head>
   <body>
-    <form>
-      <input
-        onchange="toggle('lightsImage')"
-        name="lights"
-        value="lights"
-        type="checkbox"
-        checked
-      />
-      <label for="lights">Lights</label>
-      <input
-        onchange="toggle('starsImage')"
-        name="stars"
-        value="stars"
-        type="checkbox"
-        checked
-      />
-      <label for="stars">Stars</label>
-      <input
-        onchange="toggle('topperImage')"
-        name="topper"
-        value="topper"
-        type="checkbox"
-        checked
-      />
-      <label for="topper">Topper</label>
-    </form>
-
-    <div class="wrapper">
-      <img src="images/tree.png" />
-      <img id="lightsImage" src="images/lights.png" />
-      <img id="starsImage" src="images/stars.png" />
-      <img id="topperImage" src="images/topper.png" />
-    </div>
+    <input
+      onchange="toggleImage('lightsImage')"
+      checked
+      type="checkbox"
+      name="lights"
+    />
+    <label>Lights</label>
+    <input
+      onchange="toggleImage('starsImage')"
+      checked
+      type="checkbox"
+      name="stars"
+    />
+    <label>Stars</label>
+    <input
+      onchange="toggleImage('topperImage')"
+      checked
+      type="checkbox"
+      name="topper"
+    />
+    <label>Topper</label>
+    <br />
+    <img src="images/tree.png" />
+    <img id="starsImage" src="images/stars.png" />
+    <img id="topperImage" src="images/topper.png" />
+    <img id="lightsImage" src="images/lights.png" />
 
     <script>
-      function toggle(imageId) {
+      function toggleImage(imageId) {
         document.getElementById(imageId).classList.toggle("hide");
       }
     </script>
