@@ -31,7 +31,7 @@ def create_training_data():
 		path = os.path.join(DATADIR, category)
 		class_num = CATEGORIES.index(category)
 		images = os.listdir(path)
-		images = images[:355]
+		# images = images[:355]
 		for img in images:
 			try :
 				img_array = cv2.imread(os.path.join(path, img), cv2.IMREAD_COLOR)

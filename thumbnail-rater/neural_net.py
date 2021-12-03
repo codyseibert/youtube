@@ -1,10 +1,6 @@
 import tensorflow as tf 
 from keras.wrappers.scikit_learn import KerasClassifier
-<<<<<<< HEAD
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
-=======
-from sklearn.model_selection import GridSearchCV
->>>>>>> 974694e4c2e8ba0fb4ac50d52f03fb791922b0a0
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import GaussianNoise, Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
 import pickle
@@ -73,7 +69,6 @@ print("Saved model to disk")
 model.save('models/CNN.model')
 
 # Printing a graph showing the accuracy changes during the training phase
-<<<<<<< HEAD
 print(history.history.keys())
 plt.figure(1)
 plt.plot(history.history['accuracy'])
@@ -83,7 +78,6 @@ plt.ylabel('accuracy')
 plt.xlabel('epoch')
 plt.legend(['train', 'validation'], loc='upper left')
 plt.show()
-=======
 # print(history.history.keys())
 # plt.figure(1)
 # plt.plot(history.history['accuracy'])
@@ -93,7 +87,6 @@ plt.show()
 # plt.xlabel('epoch')
 # plt.legend(['train', 'validation'], loc='upper left')
 # plt.show()
->>>>>>> 974694e4c2e8ba0fb4ac50d52f03fb791922b0a0
 
 
 
