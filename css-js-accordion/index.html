@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .accordion {
+        height: 80px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        font-size: 40px;
+      }
+
+      .accordion:hover {
+        background-color: #eee;
+      }
+
+      .content {
+        overflow: hidden;
+        max-height: 0px;
+        transition: all 0.5s ease;
+      }
+
+      .slide-out {
+        /* max-height: 500px; */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div onclick="slideOut(this)" class="accordion">Subject</div>
+    <div class="content">
+      Fusce posuere velit sed felis condimentum eleifend. Etiam eleifend viverra
+      maximus. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+      Donec scelerisque est fermentum semper lobortis. Cras sed nulla pretium,
+      laoreet orci vel, ultrices purus. Vestibulum feugiat lorem lacinia dolor
+      dictum mollis. Ut id arcu ac lorem bibendum bibendum sed sit amet libero.
+      In hac habitasse platea dictumst. Cras molestie mollis viverra. Mauris
+      vulputate nisl lacus, eget elementum risus rutrum vel. Praesent eget nisi
+      velit. Praesent eu arcu elit. Maecenas luctus placerat blandit. Fusce sit
+      amet sagittis sapien. Phasellus id est et nisl pharetra bibendum. Sed quis
+      egestas arcu. Cras ultricies massa eget massa hendrerit, non tincidunt
+      orci pharetra. Quisque scelerisque facilisis sem, quis dapibus nibh luctus
+      in. Etiam tincidunt, enim eget posuere porttitor, diam mauris dignissim
+      lacus, sed accumsan lectus justo ut ex. Maecenas id consectetur nibh, sit
+      amet fringilla purus. Ut quis convallis quam, at pharetra metus. Quisque
+      ac felis quis lorem consectetur vehicula. Sed vitae orci ex. Proin erat
+      diam, tincidunt at quam fermentum, malesuada pretium ipsum.
+    </div>
+
+    <div onclick="slideOut(this)" class="accordion">Other Topic</div>
+    <div class="content">
+      Fusce posuere velit sed felis condimentum eleifend. Etiam eleifend viverra
+      maximus. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+      Donec scelerisque est fermentum semper lobortis. Cras sed nulla pretium,
+      laoreet orci vel, ultrices purus. Vestibulum feugiat lorem lacinia dolor
+      dictum mollis. Ut id arcu ac lorem bibendum bibendum sed sit amet libero.
+      In hac habitasse platea dictumst. Cras molestie mollis viverra. Mauris
+      vulputate nisl lacus, eget elementum risus rutrum vel. Praesent eget nisi
+      velit. Praesent eu arcu elit. Maecenas luctus placerat blandit. Fusce sit
+      amet sagittis sapien. Phasellus id est et nisl pharetra bibendum. Sed quis
+      egestas arcu. Cras ultricies massa eget massa hendrerit, non tincidunt
+      orci pharetra. Quisque scelerisque facilisis sem, quis dapibus nibh luctus
+      in. Etiam tincidunt, enim eget posuere porttitor, diam mauris dignissim
+      lacus, sed accumsan lectus justo ut ex. Maecenas id consectetur nibh, sit
+      amet fringilla purus. Ut quis convallis quam, at pharetra metus. Quisque
+      ac felis quis lorem consectetur vehicula. Sed vitae orci ex. Proin erat
+      diam, tincidunt at quam fermentum, malesuada pretium ipsum.
+    </div>
+
+    <script>
+      function slideOut(accordion) {
+        const content = accordion.nextElementSibling;
+        const isExpanded = content.dataset.expanded === "true";
+        content.style.maxHeight = !isExpanded
+          ? content.scrollHeight + "px"
+          : "0px";
+        content.dataset.expanded = !isExpanded;
+      }
+    </script>
+  </body>
+</html>
