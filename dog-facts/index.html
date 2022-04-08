@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+  </style>
+</head>
+
+<body>
+  <div id="dog-facts"></div>
+  <button id="load-more">Load More Facts</button>
+
+  <script>
+    const dogFactsEl = document.getElementById('dog-facts');
+    const loadMoreBtn = document.getElementById('load-more');
+
+    const loadSomeDogFacts = (numberOfFacts = 5) => {
+      const DOG_URL = `http://localhost:8010/proxy/api/v1/resources/dogs?number=${numberOfFacts}`;
+      fetch(DOG_URL)
+        .then(response => response.json())
+        .then(responseJson => {
+          for (let { fact } of responseJson) {
+            const dogFact = document.createElement('p');
+            dogFact.innerText = fact;
+            dogFactsEl.append(dogFact);
+          }
+        })
+    }
+
+    loadMoreBtn.addEventListener('click', () => {
+      loadSomeDogFacts(3);
+    })
+
+  </script>
+</body>
+
+</html>
