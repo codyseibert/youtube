@@ -26,7 +26,7 @@ body {
 
 #title {
   position: fixed;
-  font-size: 80px;
+  font-size: 70px;
   z-index: 1;
   top: -300px;
   left: 400px;
