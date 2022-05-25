@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "next/core-web-vitals"
+  ],
+  "rules": {
+    "react-hooks/exhaustive-deps": "warn",
+    "react/style-prop-object": "error"
+  }
+}
