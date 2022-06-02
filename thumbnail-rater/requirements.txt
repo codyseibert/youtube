@@ -40,7 +40,7 @@ six==1.15.0
 tensorboard==2.6.0
 tensorboard-data-server==0.6.1
 tensorboard-plugin-wit==1.8.0
-tensorflow==2.6.0
+tensorflow==2.7.2
 tensorflow-estimator==2.6.0
 termcolor==1.1.0
 threadpoolctl==3.0.0
