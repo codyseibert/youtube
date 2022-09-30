@@ -17,7 +17,7 @@
     "parcel": "^1.12.4",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "recharts": "^2.0.0-beta.1",
+    "recharts": "^2.1.14",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0"
   },
