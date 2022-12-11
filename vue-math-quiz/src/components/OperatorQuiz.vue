@@ -50,18 +50,27 @@ export default {
 
       const methodToUse = methods[this.operator];
 
-      this.answers = [];
-      this.answers.push(methodToUse(this.operandLeft, this.operandRight + 1));
-      this.answers.push(methodToUse(this.operandLeft + 1, this.operandRight));
-      this.answers.push(
-        methodToUse(this.operandLeft + 1, this.operandRight + 1)
-      );
-      this.answers.push(
-        methodToUse(this.operandLeft - 1, this.operandRight + 1)
-      );
-      this.answers.push(methodToUse(this.operandLeft, this.operandRight - 1));
+       const expectedAnswer = methodToUse(this.operandLeft, this.operandRight);
+      let i = 0;
+      // loop to print the numbers and make sure none are duplicates
+      while (i < 5) {
+        const answer = methodToUse(
+          parseInt(Math.random() * 13),
+          parseInt(Math.random() * 13)
+        );
 
-      const expectedAnswer = methodToUse(this.operandLeft, this.operandRight);
+        let allowedNumber = true;
+        for (let n = 0; n < this.answers.length; n++) {
+          if (answer == this.answers[n] || answer == expectedAnswer) {
+            allowedNumber = false;
+          }
+        }
+
+        if (allowedNumber) {
+          this.answers.push(answer);
+          i++;
+        }
+      }
       this.answers[
         parseInt(Math.random() * this.answers.length)
       ] = expectedAnswer;
