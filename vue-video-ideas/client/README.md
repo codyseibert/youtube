@@ -12,7 +12,7 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production---- entity dndndndndn
+### Compiles and minifies for production---- entity dndndndndn alert i am coming
 
 ```
 npm run build
